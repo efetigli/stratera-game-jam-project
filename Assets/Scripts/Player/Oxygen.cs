@@ -27,7 +27,6 @@ public class Oxygen : MonoBehaviour
     {
         CurrentOxygenValue();
         OxygenArea();
-        Debug.Log(currentOxygen);
     }
 
     private void OxygenArea()
