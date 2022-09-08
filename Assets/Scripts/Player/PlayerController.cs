@@ -12,6 +12,10 @@ public class PlayerController : MonoBehaviour
 
     [Header("Player Components")]
     [SerializeField] private Rigidbody rigidBody;
+    [SerializeField] private Animator animator;
+    private const float AnimatorDampTime = 0.1f;
+
+    [Header("Ground Checking")]
     [SerializeField] private Transform checkGround;
     [SerializeField] private LayerMask maskGround;
 
@@ -52,7 +56,12 @@ public class PlayerController : MonoBehaviour
     {
         movement = transform.right * inputReader.move.x + transform.forward * inputReader.move.y;
 
-        this.transform.position += movement * movementSpeed * Time.deltaTime;
+        if (movement == Vector3.zero)
+            animator.SetFloat("IdleAndWalk", 0f, AnimatorDampTime, Time.deltaTime);
+        else if (movement != Vector3.zero)
+            animator.SetFloat("IdleAndWalk", 1f, AnimatorDampTime, Time.deltaTime);
+
+        transform.position += movement * movementSpeed * Time.deltaTime;
     }
 
     private void Jump()
@@ -63,6 +72,6 @@ public class PlayerController : MonoBehaviour
 
     private bool IsGround()
     {
-        return Physics.CheckSphere(checkGround.position, 0.2f, maskGround);
+        return Physics.CheckSphere(checkGround.position, 0.1f, maskGround);
     }
 }
