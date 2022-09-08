@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
         else if (movement != Vector3.zero)
             animator.SetFloat("IdleAndWalk", 1f, AnimatorDampTime, Time.deltaTime);
 
-        transform.position += movement * movementSpeed * Time.deltaTime;
+        transform.position += movement.normalized * movementSpeed * Time.deltaTime;
     }
 
     private void Jump()
