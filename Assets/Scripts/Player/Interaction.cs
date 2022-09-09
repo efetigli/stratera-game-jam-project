@@ -13,6 +13,9 @@ public class Interaction : MonoBehaviour
     [Header("Main Camera")]
     [SerializeField] private Camera mainCamera;
 
+    [Header("Saves")]
+    [SerializeField] private saveMaterials mySaveMaterials;
+
     #region Pickable
     [Header("Pick Objects")]
     [SerializeField] private LayerMask maskPickable;
@@ -39,12 +42,31 @@ public class Interaction : MonoBehaviour
         if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.TransformDirection(Vector3.forward), out RaycastHit raycastHit,
             rayPickableDistance, maskPickable))
         {
-            if (raycastHit.collider.CompareTag("Deneme"))
+            if (raycastHit.collider.CompareTag("Metal"))
             {
                 helpingText.text = "Press [E] \n to collect";
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    Debug.Log("pick");
+                    mySaveMaterials.metal += 10;
+                    Destroy(raycastHit.collider.gameObject);
+                }
+            }
+            else if (raycastHit.collider.CompareTag("Gold"))
+            {
+                helpingText.text = "Press [E] \n to collect";
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    mySaveMaterials.metal += 10;
+                    Destroy(raycastHit.collider.gameObject);
+                }
+            }
+            else if (raycastHit.collider.CompareTag("Oil"))
+            {
+                helpingText.text = "Press [E] \n to collect";
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    mySaveMaterials.metal += 10;
+                    Destroy(raycastHit.collider.gameObject);
                 }
             }
         }
