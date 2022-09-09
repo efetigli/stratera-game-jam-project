@@ -11,6 +11,7 @@ public class InputReader : MonoBehaviour
     public float mouseX { get; private set; }
     public float mouseY { get; private set; }
     public float jump { get; private set; }
+    public bool fastRun { get; private set; }
 
 
     void Start()
@@ -22,6 +23,7 @@ public class InputReader : MonoBehaviour
     {
         LookInput();
         MovementInput();
+        FastRunInput();
     }
 
     private void LookInput()
@@ -36,5 +38,18 @@ public class InputReader : MonoBehaviour
         float y = Input.GetAxis("Vertical");
 
         move = new Vector2(x, y);
+    }
+
+    private void FastRunInput()
+    {
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            fastRun = true;
+        }
+
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            fastRun = false;
+        }
     }
 }
