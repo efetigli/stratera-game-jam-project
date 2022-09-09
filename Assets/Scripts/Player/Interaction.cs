@@ -56,7 +56,7 @@ public class Interaction : MonoBehaviour
                 helpingText.text = "Press [E] \n to collect";
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    mySaveMaterials.metal += 10;
+                    mySaveMaterials.oil += 10;
                     Destroy(raycastHit.collider.gameObject);
                 }
             }
@@ -65,7 +65,7 @@ public class Interaction : MonoBehaviour
                 helpingText.text = "Press [E] \n to collect";
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    mySaveMaterials.metal += 10;
+                    mySaveMaterials.gold += 10;
                     Destroy(raycastHit.collider.gameObject);
                 }
             }
