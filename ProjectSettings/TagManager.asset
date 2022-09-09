@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Resource
   - Deneme
+  - Metal
+  - Oil
+  - Gold
   layers:
   - Default
   - TransparentFX
