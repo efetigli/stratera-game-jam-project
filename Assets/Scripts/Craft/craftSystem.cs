@@ -24,6 +24,9 @@ public class craftSystem : MonoBehaviour
     [Header("Pick Axe")]
     [SerializeField] private Pickaxe myPickAxe;
 
+    [Header("Oxygen")]
+    [SerializeField] private Oxygen myOxygen;
+
     [Header("OilSlider")]
     [SerializeField] Slider oilSlider;
 
@@ -199,8 +202,8 @@ public class craftSystem : MonoBehaviour
 
     public void upgradeGPUpdate()
     {
-        mPUpgradeButton.enabled = false;
-        Image3.enabled = true;
+        gPUpgradeButton.enabled = false;
+        Image4.enabled = true;
     }
 
     public void UpgradeOSL(){
@@ -209,6 +212,7 @@ public class craftSystem : MonoBehaviour
                 mySaveMaterials.metal = mySaveMaterials.metal - oS2ReqMetal;
                 mySaveMaterials.plastic = mySaveMaterials.plastic - oS2ReqPlastic;
                 mySaveMaterials.oxygenSystemLevel = 2;
+                myOxygen.UpdateOxygenLevel();
                 osPlastic1.enabled = false;
                 oSMetal1.enabled = false;
                 oSLevel2.enabled = false;
@@ -235,6 +239,7 @@ public class craftSystem : MonoBehaviour
                 mySaveMaterials.metal = mySaveMaterials.metal - oS3ReqMetal;
                 mySaveMaterials.plastic = mySaveMaterials.plastic - oS3ReqPlastic;
                 mySaveMaterials.oxygenSystemLevel = 3;
+                myOxygen.UpdateOxygenLevel();
                 oSUpgradeButton.enabled = false;
                 Image5.enabled = true;
                 Image6.enabled = true;
