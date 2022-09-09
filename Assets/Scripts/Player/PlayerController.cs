@@ -37,8 +37,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        // Daha sonra burdan kaldýr!!
-        Cursor.lockState = CursorLockMode.Locked;
+        // Daha sonra burdan kaldï¿½r!!
         whichWeapon = 1;
     }
 

@@ -21,17 +21,63 @@ public class craftSystem : MonoBehaviour
     [SerializeField] private saveMaterials mySaveMaterials;
     [SerializeField] private saveShip mySaveShip;
 
+    [Header("Pick Axe")]
+    [SerializeField] private Pickaxe myPickAxe;
+
     [Header("OilSlider")]
     [SerializeField] Slider oilSlider;
 
-    [Header("Texts")]
+    [Header("Counter Texts")]
     public TextMeshProUGUI plasticCount;
     public TextMeshProUGUI oilCount; 
-    
+
+    [Header("OS & BL Texts")]
+    public TextMeshProUGUI oSLevel2;
+    public TextMeshProUGUI oSLevel3;
+    public TextMeshProUGUI osPlastic1;
+    public TextMeshProUGUI osPlastic2;
+    public TextMeshProUGUI oSMetal1;
+    public TextMeshProUGUI oSMetal2;
+    public TextMeshProUGUI bLLevel2;
+    public TextMeshProUGUI bLLevel3;
+    public TextMeshProUGUI bLPlastic1;
+    public TextMeshProUGUI bLPlastic2;
+    [Header("Buttons")]
+    public Button plate1CraftButton;
+    public Button plate2CraftButton;
+    public Button mPUpgradeButton;
+    public Button gPUpgradeButton;
+    public Button oSUpgradeButton;
+    public Button bLUpgradeButton;
+
+    [Header("Images")]
+    public Image Image1;
+    public Image Image2;
+    public Image Image3;
+    public Image Image4;
+    public Image Image5;
+    public Image Image6;
+    public Image Image7;
     void Start(){
         mySaveMaterials.metal = 1200;
         mySaveMaterials.plastic = 600;
         mySaveMaterials.oil = 2000;
+        mySaveMaterials.gold = 2000;
+        mySaveMaterials.oxygenSystemLevel = 1;
+        mySaveMaterials.bootsLevel = 1;
+        osPlastic2.enabled = false;
+        oSMetal2.enabled = false;
+        oSLevel3.enabled = false;
+        bLLevel3.enabled = false;
+        bLPlastic2.enabled = false;
+        Image1.enabled = false;
+        Image2.enabled = false;
+        Image3.enabled = false;
+        Image4.enabled = false;
+        Image5.enabled = false;
+        Image6.enabled = false;
+        Image7.enabled = false;
+
     }
     void FixedUpdate(){
         Debug.Log(mySaveMaterials.metal);
@@ -44,6 +90,8 @@ public class craftSystem : MonoBehaviour
         if(plate1ReqMetal <= mySaveMaterials.metal){
             mySaveMaterials.metal = mySaveMaterials.metal - plate1ReqMetal;
             mySaveShip.isLostPlate1 = false;
+            plate1CraftButton.enabled = false;
+            Image1.enabled = true;
         }
         else{
             Debug.Log("You don't have enough metal!!");
@@ -53,6 +101,8 @@ public class craftSystem : MonoBehaviour
         if(plate2ReqMetal <= mySaveMaterials.metal){
             mySaveMaterials.metal = mySaveMaterials.metal - plate2ReqMetal;
             mySaveShip.isLostPlate2 = false;
+            plate2CraftButton.enabled = false;
+            Image2.enabled = true;
         }
         else{
             Debug.Log("You don't have enough metal!!");
@@ -73,6 +123,9 @@ public class craftSystem : MonoBehaviour
         if(mPReqMetal <= mySaveMaterials.metal){
             mySaveMaterials.metal = mySaveMaterials.metal - mPReqMetal;
             mySaveMaterials.pickaxeType = "Metal";
+            myPickAxe.AssignPickaxeHead();
+            mPUpgradeButton.enabled = false;
+            Image3.enabled = true;
         }
         else{
             Debug.Log("You don't have enough metal!!");
@@ -82,6 +135,9 @@ public class craftSystem : MonoBehaviour
         if(gPReqGold <= mySaveMaterials.gold){
             mySaveMaterials.metal = mySaveMaterials.metal - mPReqMetal;
             mySaveMaterials.pickaxeType = "Gold";
+            myPickAxe.AssignPickaxeHead();
+            gPUpgradeButton.enabled = false;
+            Image4.enabled = true;
         }
         else{
             Debug.Log("You don't have enough gold!!");
@@ -93,6 +149,12 @@ public class craftSystem : MonoBehaviour
                 mySaveMaterials.metal = mySaveMaterials.metal - oS2ReqMetal;
                 mySaveMaterials.plastic = mySaveMaterials.plastic - oS2ReqPlastic;
                 mySaveMaterials.oxygenSystemLevel = 2;
+                osPlastic1.enabled = false;
+                oSMetal1.enabled = false;
+                oSLevel2.enabled = false;
+                osPlastic2.enabled = true;
+                oSMetal2.enabled = true;
+                oSLevel3.enabled = true;
             }
             else if(oS2ReqMetal <= mySaveMaterials.metal){
                 Debug.Log("You don't have enough plastic!!");
@@ -109,6 +171,9 @@ public class craftSystem : MonoBehaviour
                 mySaveMaterials.metal = mySaveMaterials.metal - oS3ReqMetal;
                 mySaveMaterials.plastic = mySaveMaterials.plastic - oS3ReqPlastic;
                 mySaveMaterials.oxygenSystemLevel = 3;
+                oSUpgradeButton.enabled = false;
+                Image5.enabled = true;
+                Image6.enabled = true;
             }
             else if(oS3ReqMetal <= mySaveMaterials.metal){
                 Debug.Log("You don't have enough plastic!!");
@@ -126,6 +191,10 @@ public class craftSystem : MonoBehaviour
             if(bL2ReqPlastic <= mySaveMaterials.plastic){
                 mySaveMaterials.plastic = mySaveMaterials.plastic - bL2ReqPlastic;
                 mySaveMaterials.bootsLevel = 2;
+                bLLevel2.enabled = false;
+                bLLevel3.enabled = true;
+                bLPlastic1.enabled = false;
+                bLPlastic2.enabled = true;
             }
             else{
                 Debug.Log("You don't have enough plastic!!");
@@ -135,6 +204,8 @@ public class craftSystem : MonoBehaviour
            if(bL3ReqPlastic <= mySaveMaterials.plastic){
                 mySaveMaterials.plastic = mySaveMaterials.plastic - bL3ReqPlastic;
                 mySaveMaterials.bootsLevel = 3;
+                bLUpgradeButton.enabled = false;
+                Image7.enabled = true;
             }
             else{
                 Debug.Log("You don't have enough plastic!!");
