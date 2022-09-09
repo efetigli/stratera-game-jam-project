@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         // Daha sonra burdan kald�r!!
+        //Cursor.lockState = CursorLockMode.Locked;
         whichWeapon = 1;
     }
 
