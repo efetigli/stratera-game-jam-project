@@ -2836,7 +2836,7 @@ PrefabInstance:
     - target: {fileID: -4683669308469848369, guid: 80afef7b2b2c61c45a09b07ccdb34284, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: da7d125cbb41ab74f8524dccdc8deeb1, type: 2}
+      objectReference: {fileID: 2100000, guid: e4756ae653b26554ea57102b1046674b, type: 2}
     - target: {fileID: -1806680513116206669, guid: 80afef7b2b2c61c45a09b07ccdb34284, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -2852,11 +2852,11 @@ PrefabInstance:
     - target: {fileID: -804731622281664130, guid: 80afef7b2b2c61c45a09b07ccdb34284, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: da7d125cbb41ab74f8524dccdc8deeb1, type: 2}
+      objectReference: {fileID: 2100000, guid: e4756ae653b26554ea57102b1046674b, type: 2}
     - target: {fileID: -678588488315902003, guid: 80afef7b2b2c61c45a09b07ccdb34284, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: da7d125cbb41ab74f8524dccdc8deeb1, type: 2}
+      objectReference: {fileID: 2100000, guid: e4756ae653b26554ea57102b1046674b, type: 2}
     - target: {fileID: 919132149155446097, guid: 80afef7b2b2c61c45a09b07ccdb34284, type: 3}
       propertyPath: m_Name
       value: Pickaxe
@@ -2864,7 +2864,7 @@ PrefabInstance:
     - target: {fileID: 6745302439343835087, guid: 80afef7b2b2c61c45a09b07ccdb34284, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: da7d125cbb41ab74f8524dccdc8deeb1, type: 2}
+      objectReference: {fileID: 2100000, guid: e4756ae653b26554ea57102b1046674b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80afef7b2b2c61c45a09b07ccdb34284, type: 3}
 --- !u!1 &1226538742
