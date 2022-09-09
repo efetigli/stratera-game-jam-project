@@ -13,8 +13,10 @@ public class Interaction : MonoBehaviour
     [Header("Which Tool are using")]
     [SerializeField] private PlayerController playerController;
 
-    [Header("Tool Animator")]
+    [Header("Animators")]
     [SerializeField] private Animator toolAnimator;
+    [SerializeField] private Animator playerAnimator;
+
 
     [Header("Fix Filler")]
     [SerializeField] private Image fixFiller;
@@ -44,6 +46,13 @@ public class Interaction : MonoBehaviour
     private bool isHammerPressing;
     #endregion
 
+    #region Sleep
+    [Header("Bed")]
+    [SerializeField] private LayerMask maskSleep;
+    [SerializeField] private float raySleepDistance;
+
+    #endregion
+
     [Header("Fixing")]
     [SerializeField] private float fixingTimeNeed;
     [SerializeField] private float fixingTimer;
@@ -54,6 +63,7 @@ public class Interaction : MonoBehaviour
         PickObjects();
         PickaxeUsing();
         FixCorruptedShipParts();
+        SleepIntteraction();
     }
 
     private void PickObjects()
@@ -138,7 +148,7 @@ public class Interaction : MonoBehaviour
         }
 
         if (isHammerPressing && Physics.Raycast(mainCamera.transform.position, mainCamera.transform.TransformDirection(Vector3.forward), out RaycastHit raycastHit,
-                    rayHammerHitDistance, maskHammerUsing))
+                    rayHammerHitDistance, maskSleep))
         {
             if (raycastHit.collider.CompareTag("CorruptedShipPart1"))
             {
@@ -154,6 +164,26 @@ public class Interaction : MonoBehaviour
             }
         }
             
+    }
+
+    private void SleepIntteraction()
+    {
+        if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.TransformDirection(Vector3.forward), out RaycastHit raycastHit,
+            raySleepDistance, maskPickable))
+        {
+            if (raycastHit.collider.CompareTag("Bed"))
+            {
+                helpingText.text = "Press [E] \n to Sleep";
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    playerAnimator.SetTrigger("Sleep");
+                }
+            }
+        }
+        else
+        {
+            helpingText.text = "";
+        }
     }
 
     private void OnFillFixFiller()
