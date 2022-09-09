@@ -13,6 +13,12 @@ public class Interaction : MonoBehaviour
     [Header("Which Tool are using")]
     [SerializeField] private PlayerController playerController;
 
+    [Header("Tool Animator")]
+    [SerializeField] private Animator toolAnimator;
+
+    [Header("Fix Filler")]
+    [SerializeField] private Image fixFiller;
+
     [Header("Main Camera")]
     [SerializeField] private Camera mainCamera;
 
@@ -26,18 +32,28 @@ public class Interaction : MonoBehaviour
     #endregion
 
     #region Pickaxe
-    [Header("Tool Using")]
+    [Header("Pickaxe Using")]
     [SerializeField] private float rayPickaxeHitDistance;
     [SerializeField] private LayerMask maskPickaxeUsing;
-
-    [Header("Tool Animator")]
-    [SerializeField] private Animator toolAnimator;
     #endregion
+
+    #region Hammer
+    [Header("Hammer Using")]
+    [SerializeField] private float rayHammerHitDistance;
+    [SerializeField] private LayerMask maskHammerUsing;
+    private bool isHammerPressing;
+    #endregion
+
+    [Header("Fixing")]
+    [SerializeField] private float fixingTimeNeed;
+    [SerializeField] private float fixingTimer;
+    private bool flagComesFromFinishFixing;
 
     private void Update()
     {
         PickObjects();
         PickaxeUsing();
+        FixCorruptedShipParts();
     }
 
     private void PickObjects()
@@ -84,7 +100,6 @@ public class Interaction : MonoBehaviour
 
     private void PickaxeUsing()
     {
-        Debug.Log(playerController.whichWeapon);
         if (playerController.whichWeapon != 1)
             return;
 
@@ -101,6 +116,56 @@ public class Interaction : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void FixCorruptedShipParts()
+    {
+        if (playerController.whichWeapon != 2)
+            return;
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            toolAnimator.SetTrigger("HitWithHammer");
+            isHammerPressing = true;
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            if(!flagComesFromFinishFixing)
+                toolAnimator.SetTrigger("FinishHammerHit");
+            isHammerPressing = false;
+            OffFillFixFiller();
+            flagComesFromFinishFixing = false;
+        }
+
+        if (isHammerPressing && Physics.Raycast(mainCamera.transform.position, mainCamera.transform.TransformDirection(Vector3.forward), out RaycastHit raycastHit,
+                    rayHammerHitDistance, maskHammerUsing))
+        {
+            if (raycastHit.collider.CompareTag("CorruptedShipPart1"))
+            {
+                OnFillFixFiller();
+
+                if(fixFiller.fillAmount >= 1)
+                {
+                    toolAnimator.SetTrigger("FinishHammerHit");
+                    isHammerPressing = false;
+                    OffFillFixFiller();
+                    flagComesFromFinishFixing = true;
+                }
+            }
+        }
+            
+    }
+
+    private void OnFillFixFiller()
+    {
+        fixingTimer += Time.deltaTime;
+        fixFiller.fillAmount = fixingTimer / fixingTimeNeed;
+    }
+
+    private void OffFillFixFiller()
+    {
+        fixingTimer = 0;
+        fixFiller.fillAmount = 0;
     }
 
 }
