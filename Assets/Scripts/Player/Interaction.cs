@@ -87,9 +87,10 @@ public class Interaction : MonoBehaviour
             if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.TransformDirection(Vector3.forward), out RaycastHit raycastHit,
                 rayToolHitDistance, maskToolUsing))
             {
-                if (raycastHit.collider.CompareTag("Deneme"))
+                if (raycastHit.collider.CompareTag("Resource"))
                 {
-                    Debug.Log("hit");
+                    raycastHit.collider.GetComponent<BreakableStone>().HitTheBreakableStone(4);
+                    Debug.Log(raycastHit.collider.GetComponent<BreakableStone>().GetStability());
                 }
             }
         }
