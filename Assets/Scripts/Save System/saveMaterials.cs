@@ -28,7 +28,7 @@ public class saveMaterials : MonoBehaviour
         oxygenSystemLevel = data.oxygenSystemLevel;
         pickaxeType = data.pickaxeType;
     }
-    void UpdateMaterials()
+    public void UpdateMaterials()
     {
         metalCount.text = metal.ToString("0");
         oilCount.text = oil.ToString("0");
