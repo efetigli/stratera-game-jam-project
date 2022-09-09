@@ -49,6 +49,7 @@ public class Interaction : MonoBehaviour
                 {
                     mySaveMaterials.metal += 10;
                     Destroy(raycastHit.collider.gameObject);
+                    mySaveMaterials.UpdateMaterials();
                 }
             }
             else if (raycastHit.collider.CompareTag("Gold"))
@@ -58,6 +59,7 @@ public class Interaction : MonoBehaviour
                 {
                     mySaveMaterials.oil += 10;
                     Destroy(raycastHit.collider.gameObject);
+                    mySaveMaterials.UpdateMaterials();
                 }
             }
             else if (raycastHit.collider.CompareTag("Oil"))
@@ -67,6 +69,7 @@ public class Interaction : MonoBehaviour
                 {
                     mySaveMaterials.gold += 10;
                     Destroy(raycastHit.collider.gameObject);
+                    mySaveMaterials.UpdateMaterials();
                 }
             }
         }
