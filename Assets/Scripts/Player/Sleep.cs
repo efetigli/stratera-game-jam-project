@@ -6,7 +6,8 @@ public class Sleep : MonoBehaviour
 {
     [SerializeField] private Transform bedPostion;
     [SerializeField] private Transform playerPosition;
-    private bool isSleeping;
+    [SerializeField] private float targetRotation;
+    [SerializeField] private bool isSleeping;
 
     private void Start()
     {
@@ -24,7 +25,8 @@ public class Sleep : MonoBehaviour
         if (isSleeping)
         {
             playerPosition.position = bedPostion.position;
-            isSleeping = false;
+            playerPosition.localRotation = Quaternion.Euler(0f,targetRotation,0f);
+            isSleeping = true;
             this.GetComponent<Sleep>().enabled = false;
         }
     }
