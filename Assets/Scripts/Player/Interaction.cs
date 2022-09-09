@@ -2,33 +2,70 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Interaction : MonoBehaviour
 {
     [Header("Which Type of Interaction")]
     [SerializeField] private Image ShowingType;
-
-    [Header("Raycast Components")]
-    [SerializeField] private LayerMask maskInteractable;
-    [SerializeField] private float rayDistance = 100f;
+    [SerializeField] private TextMeshProUGUI helpingText;
 
     [Header("Main Camera")]
     [SerializeField] private Camera mainCamera;
 
+    #region Pickable
+    [Header("Pick Objects")]
+    [SerializeField] private LayerMask maskPickable;
+    [SerializeField] private float rayPickableDistance;
+    #endregion
+
+    #region Tool
+    [Header("Tool Using")]
+    [SerializeField] private float rayToolHitDistance;
+    [SerializeField] private LayerMask maskToolUsing;
+
+    [Header("Tool Animator")]
+    [SerializeField] private Animator toolAnimator;
+    #endregion
+
     private void Update()
     {
-        InteractableRaycast();
+        PickObjects();
+        ToolUsing();
     }
 
-    private void InteractableRaycast()
+    private void PickObjects()
     {
-        RaycastHit raycastHit;
-        if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.TransformDirection(Vector3.forward), out raycastHit,
-            rayDistance, maskInteractable))
+        if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.TransformDirection(Vector3.forward), out RaycastHit raycastHit,
+            rayPickableDistance, maskPickable))
         {
             if (raycastHit.collider.CompareTag("Deneme"))
             {
-                Debug.Log("ads");
+                helpingText.text = "Press [E] \n to collect";
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    Debug.Log("pick");
+                }
+            }
+        }
+        else
+        {
+            helpingText.text = "";
+        }
+    }
+
+    private void ToolUsing()
+    {
+        if (Input.GetMouseButtonDown(0) && toolAnimator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        {
+            toolAnimator.SetTrigger("HitWithPickaxe");
+            if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.TransformDirection(Vector3.forward), out RaycastHit raycastHit,
+                rayToolHitDistance, maskToolUsing))
+            {
+                if (raycastHit.collider.CompareTag("Deneme"))
+                {
+                    Debug.Log("hit");
+                }
             }
         }
     }
