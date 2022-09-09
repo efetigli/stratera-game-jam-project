@@ -133,6 +133,7 @@ public class Interaction : MonoBehaviour
         if (playerController.whichWeapon != 2)
             return;
 
+
         if (Input.GetMouseButtonDown(0))
         {
             toolAnimator.SetTrigger("HitWithHammer");
@@ -148,8 +149,9 @@ public class Interaction : MonoBehaviour
         }
 
         if (isHammerPressing && Physics.Raycast(mainCamera.transform.position, mainCamera.transform.TransformDirection(Vector3.forward), out RaycastHit raycastHit,
-                    rayHammerHitDistance, maskSleep))
+                    rayHammerHitDistance, maskHammerUsing))
         {
+        Debug.Log("asd");
             if (raycastHit.collider.CompareTag("CorruptedShipPart1"))
             {
                 OnFillFixFiller();
@@ -169,7 +171,7 @@ public class Interaction : MonoBehaviour
     private void SleepIntteraction()
     {
         if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.TransformDirection(Vector3.forward), out RaycastHit raycastHit,
-            raySleepDistance, maskPickable))
+            raySleepDistance, maskSleep))
         {
             if (raycastHit.collider.CompareTag("Bed"))
             {
