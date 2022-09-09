@@ -74,4 +74,12 @@ public class PlayerController : MonoBehaviour
     {
         return Physics.CheckSphere(checkGround.position, 0.1f, maskGround);
     }
+
+    private void ClickWithLetMouseClick()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+
+        }           
+    }
 }
