@@ -1,12 +1,12 @@
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 public class craftSystem : MonoBehaviour
 {
     [Header("Craftables")]
     [SerializeField] float plate1ReqMetal;
     [SerializeField] float plate2ReqMetal;
-    [SerializeField] float plasticLimitTop;
-    [SerializeField] float plasticLimitButtom;
-
+    [SerializeField] float oilPerPlastic;
     [Header("Upgradeables")]
     [SerializeField] float mPReqMetal; // Metal Pickaxe
     [SerializeField] float gPReqGold; // Gold Pickaxe
@@ -20,7 +20,26 @@ public class craftSystem : MonoBehaviour
     [Header("Saves")]
     [SerializeField] private saveMaterials mySaveMaterials;
     [SerializeField] private saveShip mySaveShip;
+
+    [Header("OilSlider")]
+    [SerializeField] Slider oilSlider;
+
+    [Header("Texts")]
+    public TextMeshProUGUI plasticCount;
+    public TextMeshProUGUI oilCount; 
     
+    void Start(){
+        mySaveMaterials.metal = 1200;
+        mySaveMaterials.plastic = 600;
+        mySaveMaterials.oil = 2000;
+    }
+    void FixedUpdate(){
+        Debug.Log(mySaveMaterials.metal);
+        Debug.Log(mySaveMaterials.plastic);
+        Debug.Log(mySaveMaterials.oil);
+        oilCount.text = (oilSlider.value * oilPerPlastic).ToString("0");
+        plasticCount.text = oilSlider.value.ToString("0");
+    }
     public void craftPlate1(){
         if(plate1ReqMetal <= mySaveMaterials.metal){
             mySaveMaterials.metal = mySaveMaterials.metal - plate1ReqMetal;
@@ -40,7 +59,15 @@ public class craftSystem : MonoBehaviour
         }
     }
     public void craftPlastic(){
-        Debug.Log("asdada");
+        if(oilSlider.value * oilPerPlastic <= mySaveMaterials.oil){
+            mySaveMaterials.oil = mySaveMaterials.oil - (oilSlider.value * oilPerPlastic);
+            mySaveMaterials.plastic = mySaveMaterials.plastic + oilSlider.value;
+            oilSlider.SetValueWithoutNotify(0);
+        }
+        else{
+            Debug.Log("You don't have enough oil!!");
+            oilSlider.SetValueWithoutNotify(0);
+        }
     }
     public void upgradeMP(){
         if(mPReqMetal <= mySaveMaterials.metal){
