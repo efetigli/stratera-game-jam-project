@@ -65,6 +65,13 @@ public class Interaction : MonoBehaviour
     private bool isSleeping;
     #endregion
 
+    #region Screen
+    [Header("Screen")]
+    [SerializeField] private LayerMask maskScreen;
+    [SerializeField] private float rayScreenDistance;
+    [SerializeField] private OpenScreens openScreens;
+    #endregion
+
     [Header("Fixing")]
     [SerializeField] private float fixingTimeNeed;
     [SerializeField] private float fixingTimer;
@@ -76,6 +83,7 @@ public class Interaction : MonoBehaviour
         PickaxeUsing();
         FixCorruptedShipParts();
         SleepIntteraction();
+        InteractionWithScreens();
     }
 
     private void PickObjects()
@@ -147,6 +155,7 @@ public class Interaction : MonoBehaviour
             if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.TransformDirection(Vector3.forward), out RaycastHit raycastHit,
                 rayPickaxeHitDistance, maskPickaxeUsing))
             {
+                Debug.Log("ad");
                 if (raycastHit.collider.CompareTag("Resource"))
                 {
                     if (pickaxe.GetTypeOfPickaxe() == "Stone")
@@ -245,4 +254,28 @@ public class Interaction : MonoBehaviour
         fixFiller.fillAmount = 0;
     }
 
+    [Header("Screen Canvases")]
+    [SerializeField] private GameObject upgradeScreenCanvas;
+
+    private void InteractionWithScreens()
+    {
+        if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.TransformDirection(Vector3.forward), out RaycastHit raycastHit,
+            rayScreenDistance, maskScreen))
+        {
+            if (raycastHit.collider.CompareTag("UgradeScreen"))
+            {
+                helpingText.text = "Press [E] \n to Open Screen";
+
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    openScreens.ClosePlayerComponents();
+                    upgradeScreenCanvas.SetActive(true);
+                }
+            }
+        }
+        else
+        {
+            helpingText.text = "";
+        }
+    }
 }
