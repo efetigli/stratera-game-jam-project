@@ -25,7 +25,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 300}
   m_MaxSize: {x: 32384, y: 24288}
   vertical: 0
-  controlID: 12784
+  controlID: 26354
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -177,23 +177,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 245d0000
-      m_LastClickedID: 23844
+      m_SelectedIDs: 
+      m_LastClickedID: 0
       m_ExpandedIDs: a0affeffd2dcffffe0dcffff36fbfffffc590000665a0000965a00009e5a0000245d0000ae5d0000ee5d0000fe5d0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: Cube
-        m_OriginalName: Cube
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 24066
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 3}
       m_SearchString: 
@@ -227,7 +227,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 300}
   m_MaxSize: {x: 16192, y: 24288}
   vertical: 1
-  controlID: 12785
+  controlID: 26355
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -252,7 +252,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 0
-  controlID: 12786
+  controlID: 26356
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -785,7 +785,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 12673
+  controlID: 26332
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -831,8 +831,8 @@ MonoBehaviour:
     y: 562
     width: 890
     height: 364
-  m_MinSize: {x: 102, y: 121}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -920,14 +920,14 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
-    - e00: 0.85
+    - e00: 0.9775
       e01: 0
       e02: 0
-      e03: -10.350018
+      e03: -74.15253
       e10: 0
-      e11: 0.85
+      e11: 0.9775
       e12: 0
-      e13: 80.15
+      e13: 57.97249
       e20: 0
       e21: 0
       e22: 1
@@ -956,6 +956,8 @@ MonoBehaviour:
   m_AnimatorController: {fileID: 9100000, guid: 400f96dde3ca797479d22a18784e5223, type: 2}
   m_BreadCrumbs:
   - m_Target: {fileID: -9211287361606060200, guid: 400f96dde3ca797479d22a18784e5223, type: 2}
+    m_ScrollPosition: {x: 0, y: 0}
+  - m_Target: {fileID: 6372484348812513943, guid: 400f96dde3ca797479d22a18784e5223, type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
   stateMachineGraphGUI: {fileID: 0}
@@ -1036,22 +1038,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Animations
+    - Assets/Animations/Player
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Animations
+  - Assets/Animations/Player
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\tigli\OneDrive\Belgeler\UnityProjects\stratera-game-jam-project
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 1e5b0000
-    m_LastClickedID: 23326
-    m_ExpandedIDs: 00000000185b00002a5b000000ca9a3b
+    m_SelectedIDs: 2c5b0000
+    m_LastClickedID: 23340
+    m_ExpandedIDs: 00000000185b00001e5b000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1104,24 +1106,24 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 245d0000
-    m_LastClickedInstanceID: 23844
-    m_HadKeyboardFocusLastEvent: 0
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c623000088550000087100003284000090550000147d0000187d000050520000525200006a5600006a8b0000de52000052930000c4e90000946600001654000054740000f0610000ac530000aa5c0000ac540000169b000092e400005c830000625e0000fc600000647700008c550000566600004a660000a2680000426600002266000054be0000306100003461000084610000886100008c6100009061000094610000986100009c610000a06100009a6a000058be00005a3701005e630000000000005c91000064910000c46300005e8e00000c5f0000fe650000266700005c660000f6660000585f0000746800009ec70000988a00003e6d00002e7a0000566b0000326a0000727a000060610000666100005cf60000baf6ffff5c720000d2770000ce790000026d00001484000042620000d4660000dc660000bc660000e8660000a28e0000265f00004e5f0000386e0000a2620000825f0000906c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: BreakableStone
-      m_OriginalName: BreakableStone
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 34422
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 15}
     m_CreateAssetUtility:
@@ -1182,8 +1184,8 @@ MonoBehaviour:
     y: 0
     width: 441
     height: 1299
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
