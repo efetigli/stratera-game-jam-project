@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class materials : MonoBehaviour
+public class saveMaterials : MonoBehaviour
 {
     public float metal;
     public float  oil;
@@ -17,8 +15,18 @@ public class materials : MonoBehaviour
     public TextMeshProUGUI plasticCount; 
     public TextMeshProUGUI goldCount; 
 
-    public void SaveMaterials(){
-
+    public void saveMaterialsData(){
+        SaveSystem.SaveMaterials(this);
+    }
+    public void loadMaterialsData(){
+        materialData data =  SaveSystem.LoadMaterials();
+        metal = data.metal;
+        oil = data.oil;
+        plastic = data.plastic;
+        gold = data.gold;
+        bootsLevel = data.bootsLevel;
+        oxygenSystemLevel = data.oxygenSystemLevel;
+        pickaxeType = data.pickaxeType;
     }
     void Update()
     {
