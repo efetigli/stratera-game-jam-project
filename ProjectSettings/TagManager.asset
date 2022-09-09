@@ -12,6 +12,7 @@ TagManager:
   - CorruptedShipPart1
   - CorruptedShipPart2
   - Bed
+  - UgradeScreen
   layers:
   - Default
   - TransparentFX
