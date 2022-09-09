@@ -23,6 +23,7 @@ public class craftSystem : MonoBehaviour
     
     public void craftPlate1(){
         if(plate1ReqMetal <= mySaveMaterials.metal){
+            mySaveMaterials.metal = mySaveMaterials.metal - plate1ReqMetal;
             mySaveShip.isLostPlate1 = false;
         }
         else{
@@ -31,6 +32,7 @@ public class craftSystem : MonoBehaviour
     }
     public void craftPlate2(){
         if(plate2ReqMetal <= mySaveMaterials.metal){
+            mySaveMaterials.metal = mySaveMaterials.metal - plate2ReqMetal;
             mySaveShip.isLostPlate2 = false;
         }
         else{
@@ -42,6 +44,7 @@ public class craftSystem : MonoBehaviour
     }
     public void upgradeMP(){
         if(mPReqMetal <= mySaveMaterials.metal){
+            mySaveMaterials.metal = mySaveMaterials.metal - mPReqMetal;
             mySaveMaterials.pickaxeType = "Metal";
         }
         else{
@@ -50,6 +53,7 @@ public class craftSystem : MonoBehaviour
     }
     public void upgradeGP(){
         if(gPReqGold <= mySaveMaterials.gold){
+            mySaveMaterials.metal = mySaveMaterials.metal - mPReqMetal;
             mySaveMaterials.pickaxeType = "Gold";
         }
         else{
@@ -59,6 +63,8 @@ public class craftSystem : MonoBehaviour
     public void UpgradeOSL(){
         if(mySaveMaterials.oxygenSystemLevel == 1){
             if(oS2ReqMetal <= mySaveMaterials.metal && oS2ReqPlastic <= mySaveMaterials.plastic){
+                mySaveMaterials.metal = mySaveMaterials.metal - oS2ReqMetal;
+                mySaveMaterials.plastic = mySaveMaterials.plastic - oS2ReqPlastic;
                 mySaveMaterials.oxygenSystemLevel = 2;
             }
             else if(oS2ReqMetal <= mySaveMaterials.metal){
@@ -73,6 +79,8 @@ public class craftSystem : MonoBehaviour
         }
         else{
             if(oS3ReqMetal <= mySaveMaterials.metal && oS3ReqPlastic <= mySaveMaterials.plastic){
+                mySaveMaterials.metal = mySaveMaterials.metal - oS3ReqMetal;
+                mySaveMaterials.plastic = mySaveMaterials.plastic - oS3ReqPlastic;
                 mySaveMaterials.oxygenSystemLevel = 3;
             }
             else if(oS3ReqMetal <= mySaveMaterials.metal){
@@ -89,6 +97,7 @@ public class craftSystem : MonoBehaviour
     public void UpgradeBL(){
         if(mySaveMaterials.bootsLevel == 1){
             if(bL2ReqPlastic <= mySaveMaterials.plastic){
+                mySaveMaterials.plastic = mySaveMaterials.plastic - bL2ReqPlastic;
                 mySaveMaterials.bootsLevel = 2;
             }
             else{
@@ -97,6 +106,7 @@ public class craftSystem : MonoBehaviour
         }
         else{
            if(bL3ReqPlastic <= mySaveMaterials.plastic){
+                mySaveMaterials.plastic = mySaveMaterials.plastic - bL3ReqPlastic;
                 mySaveMaterials.bootsLevel = 3;
             }
             else{
