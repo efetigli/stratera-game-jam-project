@@ -849,6 +849,7 @@ MonoBehaviour:
   ShowingType: {fileID: 0}
   helpingText: {fileID: 2067510470}
   mainCamera: {fileID: 1794401973}
+  mySaveMaterials: {fileID: 2122202953}
   maskPickable:
     serializedVersion: 2
     m_Bits: 512
@@ -1626,7 +1627,7 @@ GameObject:
   - component: {fileID: 1041328509}
   m_Layer: 9
   m_Name: CubeOfInteraction
-  m_TagString: Deneme
+  m_TagString: Metal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2682,7 +2683,7 @@ GameObject:
   - component: {fileID: 1712232122}
   m_Layer: 9
   m_Name: CubeOfInteraction (1)
-  m_TagString: Resource
+  m_TagString: Metal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
