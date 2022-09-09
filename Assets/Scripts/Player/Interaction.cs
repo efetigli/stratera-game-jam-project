@@ -10,6 +10,9 @@ public class Interaction : MonoBehaviour
     [SerializeField] private Image ShowingType;
     [SerializeField] private TextMeshProUGUI helpingText;
 
+    [Header("Which Tool are using")]
+    [SerializeField] private PlayerController playerController;
+
     [Header("Main Camera")]
     [SerializeField] private Camera mainCamera;
 
@@ -22,10 +25,10 @@ public class Interaction : MonoBehaviour
     [SerializeField] private float rayPickableDistance;
     #endregion
 
-    #region Tool
+    #region Pickaxe
     [Header("Tool Using")]
-    [SerializeField] private float rayToolHitDistance;
-    [SerializeField] private LayerMask maskToolUsing;
+    [SerializeField] private float rayPickaxeHitDistance;
+    [SerializeField] private LayerMask maskPickaxeUsing;
 
     [Header("Tool Animator")]
     [SerializeField] private Animator toolAnimator;
@@ -34,7 +37,7 @@ public class Interaction : MonoBehaviour
     private void Update()
     {
         PickObjects();
-        ToolUsing();
+        PickaxeUsing();
     }
 
     private void PickObjects()
@@ -79,13 +82,17 @@ public class Interaction : MonoBehaviour
         }
     }
 
-    private void ToolUsing()
+    private void PickaxeUsing()
     {
+        Debug.Log(playerController.whichWeapon);
+        if (playerController.whichWeapon != 1)
+            return;
+
         if (Input.GetMouseButtonDown(0) && toolAnimator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
             toolAnimator.SetTrigger("HitWithPickaxe");
             if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.TransformDirection(Vector3.forward), out RaycastHit raycastHit,
-                rayToolHitDistance, maskToolUsing))
+                rayPickaxeHitDistance, maskPickaxeUsing))
             {
                 if (raycastHit.collider.CompareTag("Resource"))
                 {
