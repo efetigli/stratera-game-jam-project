@@ -27,6 +27,18 @@ public class Interaction : MonoBehaviour
     [Header("Saves")]
     [SerializeField] private saveMaterials mySaveMaterials;
 
+    [Header("Collecting Ore")]
+    [SerializeField] private Pickaxe pickaxe;
+    [SerializeField] private float stonePickaxeOreValue;
+    [SerializeField] private float metalPickaxeOreValue;
+    [SerializeField] private float goldPickaxeOreValue;
+
+    [Header("Pickaxe Damage")]
+    [SerializeField] private float stonePickaxeDamageValue;
+    [SerializeField] private float metalPickaxeDamageValue;
+    [SerializeField] private float goldPickaxeDamageValue;
+
+
     #region Pickable
     [Header("Pick Objects")]
     [SerializeField] private LayerMask maskPickable;
@@ -51,7 +63,6 @@ public class Interaction : MonoBehaviour
     [SerializeField] private LayerMask maskSleep;
     [SerializeField] private float raySleepDistance;
     private bool isSleeping;
-
     #endregion
 
     [Header("Fixing")]
@@ -77,7 +88,7 @@ public class Interaction : MonoBehaviour
                 helpingText.text = "Press [E] \n to collect";
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    mySaveMaterials.metal += 10;
+                    CollectingOreValue();
                     Destroy(raycastHit.collider.gameObject);
                     mySaveMaterials.UpdateMaterials();
                 }
@@ -87,7 +98,7 @@ public class Interaction : MonoBehaviour
                 helpingText.text = "Press [E] \n to collect";
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    mySaveMaterials.gold += 10;
+                    CollectingOreValue();
                     Destroy(raycastHit.collider.gameObject);
                     mySaveMaterials.UpdateMaterials();
                 }
@@ -97,7 +108,7 @@ public class Interaction : MonoBehaviour
                 helpingText.text = "Press [E] \n to collect";
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    mySaveMaterials.oil += 10;
+                    CollectingOreValue();
                     Destroy(raycastHit.collider.gameObject);
                     mySaveMaterials.UpdateMaterials();
                 }
@@ -106,6 +117,22 @@ public class Interaction : MonoBehaviour
         else
         {
             helpingText.text = "";
+        }
+    }
+
+    private void CollectingOreValue()
+    {
+        if (pickaxe.GetTypeOfPickaxe() == "Stone")
+        {
+            mySaveMaterials.metal += stonePickaxeOreValue;
+        }
+        else if (pickaxe.GetTypeOfPickaxe() == "Metal")
+        {
+            mySaveMaterials.metal += metalPickaxeOreValue;
+        }
+        else if (pickaxe.GetTypeOfPickaxe() == "Gold")
+        {
+            mySaveMaterials.metal += goldPickaxeOreValue;
         }
     }
 
@@ -122,8 +149,21 @@ public class Interaction : MonoBehaviour
             {
                 if (raycastHit.collider.CompareTag("Resource"))
                 {
-                    raycastHit.collider.GetComponent<BreakableStone>().HitTheBreakableStone(4);
-                    Debug.Log(raycastHit.collider.GetComponent<BreakableStone>().GetStability());
+                    if (pickaxe.GetTypeOfPickaxe() == "Stone")
+                    {
+                        raycastHit.collider.GetComponent<BreakableStone>().HitTheBreakableStone(stonePickaxeDamageValue);
+                        Debug.Log(raycastHit.collider.GetComponent<BreakableStone>().GetStability());
+                    }
+                    else if (pickaxe.GetTypeOfPickaxe() == "Metal")
+                    {
+                        raycastHit.collider.GetComponent<BreakableStone>().HitTheBreakableStone(metalPickaxeDamageValue);
+                        Debug.Log(raycastHit.collider.GetComponent<BreakableStone>().GetStability());
+                    }
+                    else if (pickaxe.GetTypeOfPickaxe() == "Gold")
+                    {
+                        raycastHit.collider.GetComponent<BreakableStone>().HitTheBreakableStone(goldPickaxeDamageValue);
+                        Debug.Log(raycastHit.collider.GetComponent<BreakableStone>().GetStability());
+                    }
                 }
             }
         }
@@ -152,7 +192,6 @@ public class Interaction : MonoBehaviour
         if (isHammerPressing && Physics.Raycast(mainCamera.transform.position, mainCamera.transform.TransformDirection(Vector3.forward), out RaycastHit raycastHit,
                     rayHammerHitDistance, maskHammerUsing))
         {
-        Debug.Log("asd");
             if (raycastHit.collider.CompareTag("CorruptedShipPart1"))
             {
                 OnFillFixFiller();

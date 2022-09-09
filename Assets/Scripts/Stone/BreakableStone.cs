@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class BreakableStone : MonoBehaviour
 {
-    [SerializeField] private int stability;
+    [SerializeField] private float stability;
     [SerializeField] private GameObject[] ores;
 
-    public void HitTheBreakableStone(int hitDamage)
+    public void HitTheBreakableStone(float hitDamage)
     {
         stability = stability - hitDamage;
         if(stability <= 0)
@@ -20,7 +20,7 @@ public class BreakableStone : MonoBehaviour
         }
     }
 
-    public int GetStability()
+    public float GetStability()
     {
         return stability;
     }
