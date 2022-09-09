@@ -7,6 +7,7 @@ public class Oxygen : MonoBehaviour
 {
     [Header("Oxygen Bar")]
     [SerializeField] Slider oxygenbar;
+    [SerializeField] RectTransform oxygenbarTransform;
     [SerializeField] float regenOxygenSpeed;
     [SerializeField] float lossOxygenSpeed;
     public float currentOxygen { get; private set; }
@@ -15,11 +16,21 @@ public class Oxygen : MonoBehaviour
     [Header("Oxygen Rich Area")]
     [SerializeField] private RichOxygenArea richOxygenArea;
 
+    [Header("Save Material")]
+    [SerializeField] private saveMaterials mySaveMaterial;
+
+    [Header("Oxygen Upgrdes")]
+    [SerializeField] private float oxygenBarHeight;
+    [SerializeField] private float oxygenSystemLevel1Value;
+    [SerializeField] private float oxygenSystemLevel2Value;
+    [SerializeField] private float oxygenSystemLevel3Value;
+
     // Start is called before the first frame update
     void Start()
     {
         currentOxygen = 1;
         maxOxygen = 1;
+        UpdateOxygenLevel();
     }
 
     // Update is called once per frame
@@ -54,5 +65,23 @@ public class Oxygen : MonoBehaviour
     public void CurrentOxygenValue()
     {
         currentOxygen = oxygenbar.value;
+    }
+
+    public void UpdateOxygenLevel()
+    {
+        if(mySaveMaterial.oxygenSystemLevel == 1)
+        {
+            oxygenbarTransform.sizeDelta = new Vector2(oxygenSystemLevel1Value, oxygenBarHeight);
+        }
+        else if(mySaveMaterial.oxygenSystemLevel == 2)
+        {
+            oxygenbarTransform.sizeDelta = new Vector2(oxygenSystemLevel2Value, oxygenBarHeight);
+
+        }
+        else if(mySaveMaterial.oxygenSystemLevel == 3)
+        {
+            oxygenbarTransform.sizeDelta = new Vector2(oxygenSystemLevel3Value, oxygenBarHeight);
+
+        }
     }
 }
