@@ -8,37 +8,100 @@ public class craftSystem : MonoBehaviour
     [SerializeField] float plasticLimitButtom;
 
     [Header("Upgradeables")]
-    [SerializeField] float mPReqMetal;
-    [SerializeField] float gPReqGold;
-    [SerializeField] float oxygenSystem2ReqPlastic;
-    [SerializeField] float oxygenSystem2ReqMetal;
-    [SerializeField] float oxygenSystem3ReqPlastic;
-    [SerializeField] float oxygenSystem3ReqMetal;
-    [SerializeField] float bootsLevel2ReqPlastic;
-    [SerializeField] float bootsLevel3ReqPlastic;
+    [SerializeField] float mPReqMetal; // Metal Pickaxe
+    [SerializeField] float gPReqGold; // Gold Pickaxe
+    [SerializeField] float oS2ReqPlastic; // Oxygen System 
+    [SerializeField] float oS2ReqMetal;
+    [SerializeField] float oS3ReqPlastic;
+    [SerializeField] float oS3ReqMetal;
+    [SerializeField] float bL2ReqPlastic;  // Boots Level
+    [SerializeField] float bL3ReqPlastic;
 
     [Header("Saves")]
     [SerializeField] private saveMaterials mySaveMaterials;
+    [SerializeField] private saveShip mySaveShip;
     
     public void craftPlate1(){
-        Debug.Log("asdada");
+        if(plate1ReqMetal <= mySaveMaterials.metal){
+            mySaveShip.isLostPlate1 = false;
+        }
+        else{
+            Debug.Log("You don't have enough metal!!");
+        }
     }
     public void craftPlate2(){
-        Debug.Log("asdada");
+        if(plate2ReqMetal <= mySaveMaterials.metal){
+            mySaveShip.isLostPlate2 = false;
+        }
+        else{
+            Debug.Log("You don't have enough metal!!");
+        }
     }
     public void craftPlastic(){
         Debug.Log("asdada");
     }
     public void upgradeMP(){
-        Debug.Log("asdada");
+        if(mPReqMetal <= mySaveMaterials.metal){
+            mySaveMaterials.pickaxeType = "Metal";
+        }
+        else{
+            Debug.Log("You don't have enough metal!!");
+        }
     }
     public void upgradeGP(){
-        Debug.Log("asdada");
+        if(gPReqGold <= mySaveMaterials.gold){
+            mySaveMaterials.pickaxeType = "Gold";
+        }
+        else{
+            Debug.Log("You don't have enough gold!!");
+        }
     }
     public void UpgradeOSL(){
-        Debug.Log("asdada");
+        if(mySaveMaterials.oxygenSystemLevel == 1){
+            if(oS2ReqMetal <= mySaveMaterials.metal && oS2ReqPlastic <= mySaveMaterials.plastic){
+                mySaveMaterials.oxygenSystemLevel = 2;
+            }
+            else if(oS2ReqMetal <= mySaveMaterials.metal){
+                Debug.Log("You don't have enough plastic!!");
+            }
+            else if(oS2ReqPlastic <= mySaveMaterials.plastic){
+                Debug.Log("You don't have enough metal!!");
+            }
+            else{
+                Debug.Log("You don't have enough metal and plastic!!");
+            }
+        }
+        else{
+            if(oS3ReqMetal <= mySaveMaterials.metal && oS3ReqPlastic <= mySaveMaterials.plastic){
+                mySaveMaterials.oxygenSystemLevel = 3;
+            }
+            else if(oS3ReqMetal <= mySaveMaterials.metal){
+                Debug.Log("You don't have enough plastic!!");
+            }
+            else if(oS3ReqPlastic <= mySaveMaterials.plastic){
+                Debug.Log("You don't have enough metal!!");
+            }
+            else{
+                Debug.Log("You don't have enough metal and plastic!!");
+            }
+        }
     }
     public void UpgradeBL(){
-        Debug.Log("asdada");
+        if(mySaveMaterials.bootsLevel == 1){
+            if(bL2ReqPlastic <= mySaveMaterials.plastic){
+                mySaveMaterials.bootsLevel = 2;
+            }
+            else{
+                Debug.Log("You don't have enough plastic!!");
+            }
+        }
+        else{
+           if(bL3ReqPlastic <= mySaveMaterials.plastic){
+                mySaveMaterials.bootsLevel = 3;
+            }
+            else{
+                Debug.Log("You don't have enough plastic!!");
+            }
+        }
     }
 }
