@@ -19,19 +19,27 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform checkGround;
     [SerializeField] private LayerMask maskGround;
 
+    [Header("Tool Animator")]
+    [SerializeField] private Animator toolAnimator;
+
     [Header("Speeds")]
     [SerializeField] private float jumpSpeed;
     [SerializeField] private float walkSpeed;
     [SerializeField] private float runSpeed;
     public float movementSpeed;
     private Vector3 movement;
-
     private float xRotate = 0f;
+
+    [Header("Tools")]
+    [SerializeField] private GameObject pickaxe;
+    [SerializeField] private GameObject hammer;
+    public int whichWeapon { get; private set; }
 
     void Start()
     {
         // Daha sonra burdan kaldýr!!
         Cursor.lockState = CursorLockMode.Locked;
+        whichWeapon = 1;
     }
 
     void Update()
@@ -39,6 +47,7 @@ public class PlayerController : MonoBehaviour
         RotateHeadLeftAndRight(); RotateHeadUpAndDown();
         Movement();
         Jump();
+        HoldingTool();
     }
 
     private void RotateHeadLeftAndRight()
@@ -94,5 +103,37 @@ public class PlayerController : MonoBehaviour
         {
 
         }           
+    }
+
+    private void HoldingTool()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1) && toolAnimator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        {
+            pickaxe.SetActive(true);
+            hammer.SetActive(false);
+            whichWeapon = 1;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2) && toolAnimator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        {
+            pickaxe.SetActive(false);
+            hammer.SetActive(true);
+            whichWeapon = 2;
+        }
+
+        if((Input.GetAxisRaw("Mouse ScrollWheel") > 0.05f || Input.GetAxisRaw("Mouse ScrollWheel") < -0.05f) && toolAnimator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        {
+            if(whichWeapon == 1)
+            {
+                pickaxe.SetActive(false);
+                hammer.SetActive(true);
+                whichWeapon = 2;
+            }
+            else if(whichWeapon == 2)
+            {
+                pickaxe.SetActive(true);
+                hammer.SetActive(false);
+                whichWeapon = 1;
+            }
+        }
     }
 }
