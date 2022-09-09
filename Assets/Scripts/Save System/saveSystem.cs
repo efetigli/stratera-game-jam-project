@@ -46,4 +46,25 @@ public static class SaveSystem
             return null;
         }
     }
+    public static void SaveShip(saveShip shipInfo){
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Application.persistentDataPath+ "/shipData";
+        FileStream stream = new FileStream(path,FileMode.Create);
+        shipData data = new shipData(shipInfo);
+        formatter.Serialize(stream,data);
+        stream.Close();
+    }
+    public static shipData LoadShip(){
+        string path = Application.persistentDataPath + "/shipData";
+        if(File.Exists(path)){
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path,FileMode.Open);
+            shipData data =  formatter.Deserialize(stream) as shipData;
+            stream.Close();
+            return data;
+        }
+        else{
+            return null;
+        }
+    }
 }
