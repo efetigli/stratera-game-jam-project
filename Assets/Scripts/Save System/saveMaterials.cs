@@ -28,17 +28,12 @@ public class saveMaterials : MonoBehaviour
         oxygenSystemLevel = data.oxygenSystemLevel;
         pickaxeType = data.pickaxeType;
     }
-    void Update()
+    void UpdateMaterials()
     {
-        if(Input.GetKeyDown(KeyCode.X)){
-            metal = metal + 100;
-            oil = oil + 50;
-            plastic = plastic + 100;
-            gold = gold + 31;
-            metalCount.text = metal.ToString("0");
-            oilCount.text = oil.ToString("0");
-            plasticCount.text = plastic.ToString("0");
-            goldCount.text = gold.ToString("0");
-        }
+        metalCount.text = metal.ToString("0");
+        oilCount.text = oil.ToString("0");
+        plasticCount.text = plastic.ToString("0");
+        goldCount.text = gold.ToString("0");
+        
     }
 }
