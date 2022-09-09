@@ -11,8 +11,10 @@ public class saveShip : MonoBehaviour
     public float wingPieceLevel;
     public float engineLevel;
     public float enginePiecesLevel;
-    public float rocketLevel;
-    public float rocketPiecesLevel;
+    public float boosterRocketLevel;
+    public float boosterRocketPiecesLevel;
+    public float oilTankLevel;
+    public float oilTankPiecesLevel;
     public void saveShipData(){
         SaveSystem.SaveShip(this);
     }
@@ -27,7 +29,9 @@ public class saveShip : MonoBehaviour
         wingPieceLevel = data.wingPieceLevel;
         engineLevel = data.engineLevel;
         enginePiecesLevel = data.enginePiecesLevel;
-        rocketLevel = data.rocketLevel;
-        rocketPiecesLevel = data.rocketPiecesLevel;
+        boosterRocketLevel = data.boosterRocketLevel;
+        boosterRocketPiecesLevel = data.boosterRocketPiecesLevel;
+        oilTankLevel = data.oilTankLevel;
+        oilTankPiecesLevel = data.oilTankPiecesLevel;
     }
 }
