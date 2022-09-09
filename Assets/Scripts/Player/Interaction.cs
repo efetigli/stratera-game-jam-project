@@ -50,6 +50,7 @@ public class Interaction : MonoBehaviour
     [Header("Bed")]
     [SerializeField] private LayerMask maskSleep;
     [SerializeField] private float raySleepDistance;
+    private bool isSleeping;
 
     #endregion
 
@@ -175,15 +176,20 @@ public class Interaction : MonoBehaviour
         {
             if (raycastHit.collider.CompareTag("Bed"))
             {
-                helpingText.text = "Press [E] \n to Sleep";
+                if(!isSleeping)
+                    helpingText.text = "Press [E] \n to Sleep";
+
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     playerAnimator.SetTrigger("Sleep");
+                    isSleeping = true;
+                    helpingText.text = "";
                 }
             }
         }
         else
         {
+            isSleeping = false;
             helpingText.text = "";
         }
     }
