@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class savePlayer : MonoBehaviour
 {
-    public float  oxygenLevel;
+    public float oxygenLevel;
     public void savePlayerData(){
         SaveSystem.SavePlayer(this);
     }

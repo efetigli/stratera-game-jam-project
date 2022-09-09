@@ -10,8 +10,11 @@ public class shipData
     public float wingPieceLevel;
     public float engineLevel;
     public float enginePiecesLevel;
-    public float rocketLevel;
-    public float rocketPiecesLevel;
+    public float boosterRocketLevel;
+    public float boosterRocketPiecesLevel;
+    public float oilTankLevel;
+    public float oilTankPiecesLevel;
+    
 
  public shipData(saveShip ship){
     speed = ship.speed;
@@ -23,8 +26,9 @@ public class shipData
     wingPieceLevel = ship.wingPieceLevel;
     engineLevel = ship.engineLevel;
     enginePiecesLevel = ship.enginePiecesLevel;
-    rocketLevel = ship.rocketLevel;
-    rocketPiecesLevel = ship.rocketPiecesLevel;
-
+    boosterRocketLevel = ship.boosterRocketLevel;
+    boosterRocketPiecesLevel = ship.boosterRocketPiecesLevel;
+    oilTankLevel = ship.oilTankLevel;
+    oilTankPiecesLevel = ship.oilTankPiecesLevel;
     }   
 }
