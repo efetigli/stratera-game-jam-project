@@ -77,6 +77,8 @@ public class Interaction : MonoBehaviour
     [SerializeField] private float fixingTimer;
     private bool flagComesFromFinishFixing;
 
+
+    private GameObject raycastHittingCollider;
     private void Update()
     {
         PickObjects();
@@ -86,6 +88,12 @@ public class Interaction : MonoBehaviour
         InteractionWithScreens();
     }
 
+    [Header("Feedback Ore Player UI Element")]
+    [SerializeField] private GameObject feedbackOreUI;
+    [HideInInspector] public bool isCollectNewOre;
+    [HideInInspector] public string whichCollectNewOreType;
+    [HideInInspector] public float amountCollectNewOre;
+
     private void PickObjects()
     {
         if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.TransformDirection(Vector3.forward), out RaycastHit raycastHit,
@@ -94,11 +102,37 @@ public class Interaction : MonoBehaviour
             if (raycastHit.collider.CompareTag("Metal"))
             {
                 helpingText.text = "Press [E] \n to collect";
+                Debug.Log("asd");
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    CollectingOreValue();
+                    #region Collect By Looking Pickaxe Type
+                    if (pickaxe.GetTypeOfPickaxe() == "Stone")
+                    {
+                        feedbackOreUI.SetActive(false);
+                        mySaveMaterials.metal += stonePickaxeOreValue;
+                        amountCollectNewOre = stonePickaxeOreValue;
+                        isCollectNewOre = true;
+                        feedbackOreUI.SetActive(true);
+                    }
+                    else if (pickaxe.GetTypeOfPickaxe() == "Metal")
+                    {
+                        feedbackOreUI.SetActive(false);
+                        mySaveMaterials.metal += metalPickaxeOreValue;
+                        amountCollectNewOre = metalPickaxeOreValue;
+                        isCollectNewOre = true;
+                        feedbackOreUI.SetActive(true);
+                    }
+                    else if (pickaxe.GetTypeOfPickaxe() == "Gold")
+                    {
+                        feedbackOreUI.SetActive(false);
+                        mySaveMaterials.metal += goldPickaxeOreValue;
+                        amountCollectNewOre = goldPickaxeOreValue;
+                        isCollectNewOre = true;
+                        feedbackOreUI.SetActive(true);
+                    }
+                    #endregion
+                    whichCollectNewOreType = "Metal";
                     Destroy(raycastHit.collider.gameObject);
-                    mySaveMaterials.UpdateMaterials();
                 }
             }
             else if (raycastHit.collider.CompareTag("Gold"))
@@ -106,9 +140,34 @@ public class Interaction : MonoBehaviour
                 helpingText.text = "Press [E] \n to collect";
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    CollectingOreValue();
+                    #region Collect By Looking Pickaxe Type
+                    if (pickaxe.GetTypeOfPickaxe() == "Stone")
+                    {
+                        feedbackOreUI.SetActive(false);
+                        mySaveMaterials.gold += stonePickaxeOreValue;
+                        amountCollectNewOre = stonePickaxeOreValue;
+                        isCollectNewOre = true;
+                        feedbackOreUI.SetActive(true);
+                    }
+                    else if (pickaxe.GetTypeOfPickaxe() == "Metal")
+                    {
+                        feedbackOreUI.SetActive(false);
+                        mySaveMaterials.gold += metalPickaxeOreValue;
+                        amountCollectNewOre = metalPickaxeOreValue;
+                        isCollectNewOre = true;
+                        feedbackOreUI.SetActive(true);
+                    }
+                    else if (pickaxe.GetTypeOfPickaxe() == "Gold")
+                    {
+                        feedbackOreUI.SetActive(false);
+                        mySaveMaterials.gold += goldPickaxeOreValue;
+                        amountCollectNewOre = goldPickaxeOreValue;
+                        isCollectNewOre = true;
+                        feedbackOreUI.SetActive(true);
+                    }
+                    #endregion
+                    whichCollectNewOreType = "Gold";
                     Destroy(raycastHit.collider.gameObject);
-                    mySaveMaterials.UpdateMaterials();
                 }
             }
             else if (raycastHit.collider.CompareTag("Oil"))
@@ -116,40 +175,52 @@ public class Interaction : MonoBehaviour
                 helpingText.text = "Press [E] \n to collect";
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    CollectingOreValue();
+                    #region Collect By Looking Pickaxe Type
+                    if (pickaxe.GetTypeOfPickaxe() == "Stone")
+                    {
+                        feedbackOreUI.SetActive(false);
+                        mySaveMaterials.oil += stonePickaxeOreValue;
+                        amountCollectNewOre = stonePickaxeOreValue;
+                        isCollectNewOre = true;
+                        feedbackOreUI.SetActive(true);
+                    }
+                    else if (pickaxe.GetTypeOfPickaxe() == "Metal")
+                    {
+                        feedbackOreUI.SetActive(false);
+                        mySaveMaterials.oil += metalPickaxeOreValue;
+                        amountCollectNewOre = metalPickaxeOreValue;
+                        isCollectNewOre = true;
+                        feedbackOreUI.SetActive(true);
+                    }
+                    else if (pickaxe.GetTypeOfPickaxe() == "Gold")
+                    {
+                        feedbackOreUI.SetActive(false);
+                        mySaveMaterials.oil += goldPickaxeOreValue;
+                        amountCollectNewOre = goldPickaxeOreValue;
+                        isCollectNewOre = true;
+                        feedbackOreUI.SetActive(true);
+                    }
+                    #endregion
+                    whichCollectNewOreType = "Oil";
                     Destroy(raycastHit.collider.gameObject);
-                    mySaveMaterials.UpdateMaterials();
                 }
             }
         }
-        else
+        else if(!Physics.Raycast(mainCamera.transform.position, mainCamera.transform.TransformDirection(Vector3.forward), out RaycastHit rayHit,
+            rayPickableDistance, maskPickable))
         {
             helpingText.text = "";
         }
     }
 
-    private void CollectingOreValue()
-    {
-        if (pickaxe.GetTypeOfPickaxe() == "Stone")
-        {
-            mySaveMaterials.metal += stonePickaxeOreValue;
-        }
-        else if (pickaxe.GetTypeOfPickaxe() == "Metal")
-        {
-            mySaveMaterials.metal += metalPickaxeOreValue;
-        }
-        else if (pickaxe.GetTypeOfPickaxe() == "Gold")
-        {
-            mySaveMaterials.metal += goldPickaxeOreValue;
-        }
-    }
+
 
     private void PickaxeUsing()
     {
         if (playerController.whichWeapon != 1)
             return;
 
-        if (Input.GetMouseButtonDown(0) && toolAnimator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        if (Input.GetMouseButtonDown(0) && toolAnimator.GetCurrentAnimatorStateInfo(0).IsName("Idle") && !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
         {
             toolAnimator.SetTrigger("HitWithPickaxe");
             if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.TransformDirection(Vector3.forward), out RaycastHit raycastHit,
@@ -184,7 +255,7 @@ public class Interaction : MonoBehaviour
             return;
 
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
         {
             toolAnimator.SetTrigger("HitWithHammer");
             isHammerPressing = true;
@@ -235,7 +306,8 @@ public class Interaction : MonoBehaviour
                 }
             }
         }
-        else
+        else if (!Physics.Raycast(mainCamera.transform.position, mainCamera.transform.TransformDirection(Vector3.forward), out RaycastHit rayHit,
+            rayPickableDistance, maskPickable))
         {
             isSleeping = false;
             helpingText.text = "";
@@ -257,6 +329,10 @@ public class Interaction : MonoBehaviour
     [Header("Screen Canvases")]
     [SerializeField] private GameObject upgradeScreenCanvas;
 
+    [Header("Cursor Manager")]
+    [SerializeField] private CursorManager cursorManager;
+
+
     private void InteractionWithScreens()
     {
         if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.TransformDirection(Vector3.forward), out RaycastHit raycastHit,
@@ -270,10 +346,12 @@ public class Interaction : MonoBehaviour
                 {
                     openScreens.ClosePlayerComponents();
                     upgradeScreenCanvas.SetActive(true);
+                    cursorManager.UnlockCursor();
                 }
             }
         }
-        else
+        else if (!Physics.Raycast(mainCamera.transform.position, mainCamera.transform.TransformDirection(Vector3.forward), out RaycastHit rayHit,
+            rayPickableDistance, maskPickable))
         {
             helpingText.text = "";
         }
