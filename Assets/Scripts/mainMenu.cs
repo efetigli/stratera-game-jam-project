@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class mainMenu : MonoBehaviour
@@ -8,6 +7,11 @@ public class mainMenu : MonoBehaviour
     [Header("Saves")]
     [SerializeField] private saveMaterials mySaveMaterials;
     [SerializeField] private saveShip mySaveShip;
+
+    [SerializeField] Slider musicSlider;
+    void Start(){
+        musicSlider.value = FindObjectOfType<doNotDestroy>().GetComponent<AudioSource>().volume;
+    }
     public void newGame(){
         mySaveMaterials.metal = 0;
         mySaveMaterials.oil = 0;
