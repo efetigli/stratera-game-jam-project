@@ -13,6 +13,17 @@ public class InputReader : MonoBehaviour
     public float jump { get; private set; }
     public bool fastRun { get; private set; }
 
+    [Header("Inside Ship")]
+    [SerializeField] private RichOxygenArea InsideShip;
+
+    [Header("Pause Menu")]
+    [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private PauseManager pauseManager;
+
+    [Header("Cursor Manager")]
+    [SerializeField] private CursorManager cursorManager;
+
+
 
     void Start()
     {
@@ -24,6 +35,7 @@ public class InputReader : MonoBehaviour
         LookInput();
         MovementInput();
         FastRunInput();
+        OpenPauseMenu();
     }
 
     private void LookInput()
@@ -42,6 +54,12 @@ public class InputReader : MonoBehaviour
 
     private void FastRunInput()
     {
+        if (InsideShip.isInsideOxygenRichArea)
+        {
+            fastRun = false;
+            return;
+        }
+
         if (Input.GetKey(KeyCode.LeftShift))
         {
             fastRun = true;
@@ -50,6 +68,16 @@ public class InputReader : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             fastRun = false;
+        }
+    }
+
+    private void OpenPauseMenu()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            cursorManager.UnlockCursor();
+            pauseMenu.SetActive(true);
+            pauseManager.PauseGame();
         }
     }
 }

@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject hammer;
     public int whichWeapon { get; private set; }
 
+
     void Start()
     {
         // Daha sonra burdan kald�r!!
@@ -48,6 +49,7 @@ public class PlayerController : MonoBehaviour
         Movement();
         Jump();
         HoldingTool();
+        OpnMaterialInfoPanel();
     }
 
     private void RotateHeadLeftAndRight()
@@ -92,9 +94,9 @@ public class PlayerController : MonoBehaviour
             rigidBody.AddForce(Vector3.up * jumpSpeed);
     }
 
-    private bool IsGround()
+    public bool IsGround()
     {
-        return Physics.CheckSphere(checkGround.position, 0.1f, maskGround);
+        return Physics.CheckSphere(checkGround.position, 0.01f, maskGround);
     }
 
     private void ClickWithLetMouseClick()
@@ -134,6 +136,22 @@ public class PlayerController : MonoBehaviour
                 hammer.SetActive(false);
                 whichWeapon = 1;
             }
+        }
+    }
+    [Header("Material Player UI Element")]
+    [SerializeField] private GameObject materialsInfoUI;
+    [HideInInspector] public bool isPressMaterialShow;
+
+    private void OpnMaterialInfoPanel()
+    {
+        if (Input.GetKeyDown(KeyCode.I) && !materialsInfoUI.GetComponent<MaterialInfoPlayerUI>().isClosingMaterialsInfo)
+        {
+            isPressMaterialShow = true;
+            materialsInfoUI.SetActive(true);
+        }
+        if(Input.GetKeyUp(KeyCode.I))
+        {
+            isPressMaterialShow = false;
         }
     }
 }
