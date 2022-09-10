@@ -9,6 +9,10 @@ public class Sleep : MonoBehaviour
     [SerializeField] private float targetRotation;
     [SerializeField] private bool isSleeping;
 
+    [Header("Save files")]
+    [SerializeField] private saveShip mySaveShip;
+    [SerializeField] private saveMaterials mySaveMaterial;
+
     private void Start()
     {
         isSleeping = true;
@@ -28,6 +32,8 @@ public class Sleep : MonoBehaviour
             playerPosition.localRotation = Quaternion.Euler(0f,targetRotation,0f);
             isSleeping = true;
             this.GetComponent<Sleep>().enabled = false;
+            mySaveShip.saveShipData();
+            mySaveMaterial.saveMaterialsData();
         }
     }
 }
