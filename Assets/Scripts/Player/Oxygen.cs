@@ -25,6 +25,9 @@ public class Oxygen : MonoBehaviour
     [SerializeField] private float oxygenSystemLevel2Value;
     [SerializeField] private float oxygenSystemLevel3Value;
 
+    [Header("Die")]
+    [SerializeField] private Die die;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +41,7 @@ public class Oxygen : MonoBehaviour
     {
         CurrentOxygenValue();
         OxygenArea();
+        LowOxygen();
     }
 
     private void OxygenArea()
@@ -84,6 +88,19 @@ public class Oxygen : MonoBehaviour
             oxygenbarTransform.sizeDelta = new Vector2(oxygenSystemLevel3Value, oxygenBarHeight);
             oxygenbar.maxValue = (oxygenSystemLevel3Value / oxygenSystemLevel1Value) + 1;
 
+        }
+    }
+
+    public float GetOxygenValue()
+    {
+        return oxygenbar.value;
+    }
+
+    private void LowOxygen()
+    {
+        if (GetOxygenValue() <= 0.01)
+        {
+            die.enabled = true;
         }
     }
 }
