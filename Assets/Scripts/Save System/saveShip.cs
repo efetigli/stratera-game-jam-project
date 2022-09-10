@@ -18,8 +18,9 @@ public class saveShip : MonoBehaviour
     public float boosterRocketLevel;
     public bool hasBoosterRocketLevel2;
     public bool hasBoosterRocketLevel3;
-    public float oilTankLevel;
-    public float oilTankPiecesLevel;
+    void Start(){
+        loadShipData();
+    }
     public void saveShipData(){
         SaveSystem.SaveShip(this);
     }
@@ -41,8 +42,6 @@ public class saveShip : MonoBehaviour
         boosterRocketLevel = data.boosterRocketLevel;
         hasBoosterRocketLevel2 = data.hasBoosterRocketLevel2;
         hasBoosterRocketLevel3 = data.hasBoosterRocketLevel3;
-        oilTankLevel = data.oilTankLevel;
-        oilTankPiecesLevel = data.oilTankPiecesLevel;
     }
 
     public void UpdateShipPartLostPlate()

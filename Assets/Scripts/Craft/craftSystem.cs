@@ -69,7 +69,6 @@ public class craftSystem : MonoBehaviour
         Image5.enabled = false;
         Image6.enabled = false;
         Image7.enabled = false;
-
     }
     void FixedUpdate(){
         //Debug.Log(mySaveMaterials.metal);

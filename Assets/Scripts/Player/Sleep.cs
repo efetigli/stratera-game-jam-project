@@ -31,9 +31,9 @@ public class Sleep : MonoBehaviour
             playerPosition.position = bedPostion.position;
             playerPosition.localRotation = Quaternion.Euler(0f,targetRotation,0f);
             isSleeping = true;
-            this.GetComponent<Sleep>().enabled = false;
-            mySaveShip.saveShipData();
             mySaveMaterial.saveMaterialsData();
+            mySaveShip.saveShipData();
+            this.GetComponent<Sleep>().enabled = false;
         }
     }
 }

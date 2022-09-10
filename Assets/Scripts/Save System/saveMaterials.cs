@@ -14,6 +14,9 @@ public class saveMaterials : MonoBehaviour
     public TextMeshProUGUI plasticCount; 
     public TextMeshProUGUI goldCount; 
 
+    void Start(){
+        loadMaterialsData();
+    }
     public void saveMaterialsData(){
         SaveSystem.SaveMaterials(this);
     }

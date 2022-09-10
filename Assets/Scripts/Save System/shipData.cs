@@ -33,12 +33,10 @@ public class shipData
     hasWingPieceLevel2 = ship.hasWingPieceLevel2;
     hasWingPieceLevel3 = ship.hasWingPieceLevel3;
     engineLevel = ship.engineLevel;
-        hasEngineLevel2 = ship.hasEngineLevel2;
-        hasEngineLevel3 = ship.hasEngineLevel3;
+    hasEngineLevel2 = ship.hasEngineLevel2;
+    hasEngineLevel3 = ship.hasEngineLevel3;
     boosterRocketLevel = ship.boosterRocketLevel;
-        hasBoosterRocketLevel3 = ship.hasBoosterRocketLevel3;
-        hasBoosterRocketLevel3 = ship.hasBoosterRocketLevel3;
-    oilTankLevel = ship.oilTankLevel;
-    oilTankPiecesLevel = ship.oilTankPiecesLevel;
+    hasBoosterRocketLevel3 = ship.hasBoosterRocketLevel3;
+    hasBoosterRocketLevel3 = ship.hasBoosterRocketLevel3;
     }   
 }

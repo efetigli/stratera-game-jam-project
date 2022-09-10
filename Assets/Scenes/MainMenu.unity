@@ -3713,7 +3713,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1423774346}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1450246212}
+        m_TargetAssemblyTypeName: mainMenu, Assembly-CSharp
+        m_MethodName: Continue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1423774346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3872,6 +3884,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6607ee21575db6842b0b19d6eff58c86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySaveMaterials: {fileID: 2015082430}
+  mySaveShip: {fileID: 2015082429}
 --- !u!1 &1490697638
 GameObject:
   m_ObjectHideFlags: 0
@@ -5520,7 +5534,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1818203384}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1450246212}
+        m_TargetAssemblyTypeName: mainMenu, Assembly-CSharp
+        m_MethodName: newGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1818203384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6064,6 +6090,89 @@ RectTransform:
   m_AnchoredPosition: {x: -5.0000305, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &2015082427
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2015082431}
+  - component: {fileID: 2015082430}
+  - component: {fileID: 2015082429}
+  m_Layer: 0
+  m_Name: Data Base
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2015082429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2015082427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fed1cc88f9f44f24aa44438b2354c96c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  durability: 0
+  aerodynamics: 0
+  hasLostPlate1: 0
+  hasLostPlate2: 0
+  isLostPlate1: 0
+  isLostPlate2: 0
+  wingLevel: 1
+  hasWingPieceLevel2: 0
+  hasWingPieceLevel3: 1
+  engineLevel: 1
+  hasEngineLevel2: 1
+  hasEngineLevel3: 1
+  boosterRocketLevel: 1
+  hasBoosterRocketLevel2: 1
+  hasBoosterRocketLevel3: 1
+--- !u!114 &2015082430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2015082427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 596c12a700b6c0c43be6c870cb9f0e42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  metal: 0
+  oil: 0
+  plastic: 0
+  gold: 0
+  oxygenSystemLevel: 1
+  pickaxeType: Stone
+  metalCount: {fileID: 0}
+  oilCount: {fileID: 0}
+  plasticCount: {fileID: 0}
+  goldCount: {fileID: 0}
+--- !u!4 &2015082431
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2015082427}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1414.3971, y: 1377.5413, z: 58.69474}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2059490616
 GameObject:
   m_ObjectHideFlags: 0

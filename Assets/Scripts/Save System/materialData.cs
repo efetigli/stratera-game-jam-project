@@ -15,6 +15,5 @@ public class materialData
     gold = mateirals.gold;
     pickaxeType = mateirals.pickaxeType;
     oxygenSystemLevel = mateirals.oxygenSystemLevel;
-    
     }   
 }
