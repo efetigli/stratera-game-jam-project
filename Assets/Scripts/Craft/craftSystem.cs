@@ -87,9 +87,9 @@ public class craftSystem : MonoBehaviour
 
     }
     void FixedUpdate(){
-        Debug.Log(mySaveMaterials.metal);
-        Debug.Log(mySaveMaterials.plastic);
-        Debug.Log(mySaveMaterials.oil);
+        //Debug.Log(mySaveMaterials.metal);
+        //Debug.Log(mySaveMaterials.plastic);
+        //Debug.Log(mySaveMaterials.oil);
         oilCount.text = (oilSlider.value * oilPerPlastic).ToString("0");
         plasticCount.text = oilSlider.value.ToString("0");
     }
