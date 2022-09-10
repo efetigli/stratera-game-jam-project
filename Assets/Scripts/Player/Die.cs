@@ -18,6 +18,10 @@ public class Die : MonoBehaviour
     [Header("Close Player Components")]
     [SerializeField] private OpenScreens openScreens;
 
+    [Header("Save files")]
+    [SerializeField] private saveShip mySaveShip;
+    [SerializeField] private saveMaterials mySaveMaterial;
+
     private void Update()
     {
         CheckOxygen();
@@ -53,6 +57,8 @@ public class Die : MonoBehaviour
                 this.GetComponent<Rigidbody>().velocity = new Vector3(0f, this.GetComponent<Rigidbody>().velocity.y, 0f);
                 Debug.Log(2);
             }
+            mySaveMaterial.loadMaterialsData();
+            mySaveShip.loadShipData();
         }
     }
 }
