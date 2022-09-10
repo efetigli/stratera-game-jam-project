@@ -5,7 +5,6 @@ public class materialData
     public float  oil;
     public float  plastic;
     public float  gold;
-    public float  bootsLevel;
     public float  oxygenSystemLevel;
     public string  pickaxeType;
 
@@ -14,8 +13,8 @@ public class materialData
     oil = mateirals.oil;
     plastic = mateirals.plastic;
     gold = mateirals.gold;
-    bootsLevel = mateirals.bootsLevel;
-    bootsLevel = mateirals.bootsLevel;
-    bootsLevel = mateirals.bootsLevel;
+    pickaxeType = mateirals.pickaxeType;
+    oxygenSystemLevel = mateirals.oxygenSystemLevel;
+    
     }   
 }

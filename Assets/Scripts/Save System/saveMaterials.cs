@@ -7,7 +7,6 @@ public class saveMaterials : MonoBehaviour
     public float  oil;
     public float  plastic;
     public float  gold;
-    public float  bootsLevel;
     public float  oxygenSystemLevel;
     public string  pickaxeType;
     public TextMeshProUGUI metalCount;
@@ -24,7 +23,6 @@ public class saveMaterials : MonoBehaviour
         oil = data.oil;
         plastic = data.plastic;
         gold = data.gold;
-        bootsLevel = data.bootsLevel;
         oxygenSystemLevel = data.oxygenSystemLevel;
         pickaxeType = data.pickaxeType;
     }

@@ -14,8 +14,6 @@ public class craftSystem : MonoBehaviour
     [SerializeField] float oS2ReqMetal;
     [SerializeField] float oS3ReqPlastic;
     [SerializeField] float oS3ReqMetal;
-    [SerializeField] float bL2ReqPlastic;  // Boots Level
-    [SerializeField] float bL3ReqPlastic;
 
     [Header("Saves")]
     [SerializeField] private saveMaterials mySaveMaterials;
@@ -34,24 +32,19 @@ public class craftSystem : MonoBehaviour
     public TextMeshProUGUI plasticCount;
     public TextMeshProUGUI oilCount; 
 
-    [Header("OS & BL Texts")]
+    [Header("OS Texts")]
     public TextMeshProUGUI oSLevel2;
     public TextMeshProUGUI oSLevel3;
     public TextMeshProUGUI osPlastic1;
     public TextMeshProUGUI osPlastic2;
     public TextMeshProUGUI oSMetal1;
     public TextMeshProUGUI oSMetal2;
-    public TextMeshProUGUI bLLevel2;
-    public TextMeshProUGUI bLLevel3;
-    public TextMeshProUGUI bLPlastic1;
-    public TextMeshProUGUI bLPlastic2;
     [Header("Buttons")]
     public Button plate1CraftButton;
     public Button plate2CraftButton;
     public Button mPUpgradeButton;
     public Button gPUpgradeButton;
     public Button oSUpgradeButton;
-    public Button bLUpgradeButton;
 
     [Header("Images")]
     public Image Image1;
@@ -66,17 +59,9 @@ public class craftSystem : MonoBehaviour
     [SerializeField] private craftSystem craftUIScreen;
     [SerializeField] private bool isScreen;
     void Start(){
-        mySaveMaterials.metal = 1200;
-        mySaveMaterials.plastic = 600;
-        mySaveMaterials.oil = 2000;
-        mySaveMaterials.gold = 2000;
-        mySaveMaterials.oxygenSystemLevel = 1;
-        mySaveMaterials.bootsLevel = 1;
         osPlastic2.enabled = false;
         oSMetal2.enabled = false;
         oSLevel3.enabled = false;
-        bLLevel3.enabled = false;
-        bLPlastic2.enabled = false;
         Image1.enabled = false;
         Image2.enabled = false;
         Image3.enabled = false;
@@ -275,54 +260,5 @@ public class craftSystem : MonoBehaviour
         oSUpgradeButton.enabled = false;
         Image5.enabled = true;
         Image6.enabled = true;
-    }
-
-    public void UpgradeBL(){
-        if(mySaveMaterials.bootsLevel == 1){
-            if(bL2ReqPlastic <= mySaveMaterials.plastic){
-                mySaveMaterials.plastic = mySaveMaterials.plastic - bL2ReqPlastic;
-                mySaveMaterials.bootsLevel = 2;
-                bLLevel2.enabled = false;
-                bLLevel3.enabled = true;
-                bLPlastic1.enabled = false;
-                bLPlastic2.enabled = true;
-                if (isScreen)
-                {
-                    craftUIScreen.UpgradeBL1Update();
-                }
-            }
-            else{
-                Debug.Log("You don't have enough plastic!!");
-            }
-        }
-        else{
-           if(bL3ReqPlastic <= mySaveMaterials.plastic){
-                mySaveMaterials.plastic = mySaveMaterials.plastic - bL3ReqPlastic;
-                mySaveMaterials.bootsLevel = 3;
-                bLUpgradeButton.enabled = false;
-                Image7.enabled = true;
-                if (isScreen)
-                {
-                    craftUIScreen.UpgradeBL2Update();
-                }
-            }
-            else{
-                Debug.Log("You don't have enough plastic!!");
-            }
-        }
-    }
-
-    public void UpgradeBL1Update()
-    {
-        bLLevel2.enabled = false;
-        bLLevel3.enabled = true;
-        bLPlastic1.enabled = false;
-        bLPlastic2.enabled = true;
-    }
-
-    public void UpgradeBL2Update()
-    {
-        bLUpgradeButton.enabled = false;
-        Image7.enabled = true;
     }
 }

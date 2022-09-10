@@ -25,27 +25,6 @@ public static class SaveSystem
             return null;
         }
     }
-    public static void SavePlayer(savePlayer playerInfo){
-        BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath+ "/playerData";
-        FileStream stream = new FileStream(path,FileMode.Create);
-        playerData data = new playerData(playerInfo);
-        formatter.Serialize(stream,data);
-        stream.Close();
-    }
-    public static playerData LoadPlayer(){
-        string path = Application.persistentDataPath + "/playerData";
-        if(File.Exists(path)){
-            BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = new FileStream(path,FileMode.Open);
-            playerData data =  formatter.Deserialize(stream) as playerData;
-            stream.Close();
-            return data;
-        }
-        else{
-            return null;
-        }
-    }
     public static void SaveShip(saveShip shipInfo){
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath+ "/shipData";
