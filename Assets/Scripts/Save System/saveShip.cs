@@ -47,15 +47,7 @@ public class saveShip : MonoBehaviour
 
     public void UpdateShipPartLostPlate()
     {
-        if (isLostPlate1)
-        {
             durability += 100;
-        }
-
-        if (isLostPlate1)
-        {
-            durability += 100;
-        }
     }
 
     public void UpdateEngine()
