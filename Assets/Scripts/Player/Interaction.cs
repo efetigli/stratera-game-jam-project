@@ -26,6 +26,7 @@ public class Interaction : MonoBehaviour
 
     [Header("Saves")]
     [SerializeField] private saveMaterials mySaveMaterials;
+    [SerializeField] private saveShip saveShip;
 
     [Header("Collecting Ore")]
     [SerializeField] private Pickaxe pickaxe;
@@ -78,14 +79,34 @@ public class Interaction : MonoBehaviour
     private bool flagComesFromFinishFixing;
 
 
+    [Header("Upgrade")]
+    [SerializeField] private LayerMask maskUpgrade;
+    [SerializeField] private float rayUpgradeDistance;
+
+    [Header("Wing Parts")]
+    [SerializeField] private GameObject wingLvl1;
+    [SerializeField] private GameObject wingLvl2;
+    [SerializeField] private GameObject wingLvl3;
+
+    [Header("Engine Parts")]
+    [SerializeField] private GameObject engineLvl1;
+    [SerializeField] private GameObject engineLvl2;
+    [SerializeField] private GameObject engineLvl3;
+
+    [Header("Booster Parts")]
+    [SerializeField] private GameObject boosterLvl1;
+    [SerializeField] private GameObject boosterLvl2;
+    [SerializeField] private GameObject boosterLvl3;
+
     private GameObject raycastHittingCollider;
     private void Update()
     {
         PickObjects();
         PickaxeUsing();
-        FixCorruptedShipParts();
+        //FixCorruptedShipParts();
         SleepIntteraction();
         InteractionWithScreens();
+        UpgradeShipParts();
     }
 
     [Header("Feedback Ore Player UI Element")]
@@ -217,7 +238,7 @@ public class Interaction : MonoBehaviour
 
     private void PickaxeUsing()
     {
-        if (playerController.whichWeapon != 1)
+        if (playerController.whichWeapon != 1 && !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
             return;
 
         if (Input.GetMouseButtonDown(0) && toolAnimator.GetCurrentAnimatorStateInfo(0).IsName("Idle") && !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
@@ -249,44 +270,44 @@ public class Interaction : MonoBehaviour
         }
     }
 
-    private void FixCorruptedShipParts()
-    {
-        if (playerController.whichWeapon != 2)
-            return;
+    //private void FixCorruptedShipParts()
+    //{
+    //    if (playerController.whichWeapon != 2)
+    //        return;
 
 
-        if (Input.GetMouseButtonDown(0) && !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
-        {
-            toolAnimator.SetTrigger("HitWithHammer");
-            isHammerPressing = true;
-        }
-        else if (Input.GetMouseButtonUp(0))
-        {
-            if(!flagComesFromFinishFixing)
-                toolAnimator.SetTrigger("FinishHammerHit");
-            isHammerPressing = false;
-            OffFillFixFiller();
-            flagComesFromFinishFixing = false;
-        }
+    //    if (Input.GetMouseButtonDown(0) && !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
+    //    {
+    //        toolAnimator.SetTrigger("HitWithHammer");
+    //        isHammerPressing = true;
+    //    }
+    //    else if (Input.GetMouseButtonUp(0))
+    //    {
+    //        if(!flagComesFromFinishFixing)
+    //            toolAnimator.SetTrigger("FinishHammerHit");
+    //        isHammerPressing = false;
+    //        OffFillFixFiller();
+    //        flagComesFromFinishFixing = false;
+    //    }
 
-        if (isHammerPressing && Physics.Raycast(mainCamera.transform.position, mainCamera.transform.TransformDirection(Vector3.forward), out RaycastHit raycastHit,
-                    rayHammerHitDistance, maskHammerUsing))
-        {
-            if (raycastHit.collider.CompareTag("CorruptedShipPart1"))
-            {
-                OnFillFixFiller();
+    //    if (isHammerPressing && Physics.Raycast(mainCamera.transform.position, mainCamera.transform.TransformDirection(Vector3.forward), out RaycastHit raycastHit,
+    //                rayHammerHitDistance, maskHammerUsing))
+    //    {
+    //        if (raycastHit.collider.CompareTag("CorruptedShipPart1"))
+    //        {
+    //            OnFillFixFiller();
 
-                if(fixFiller.fillAmount >= 1)
-                {
-                    toolAnimator.SetTrigger("FinishHammerHit");
-                    isHammerPressing = false;
-                    OffFillFixFiller();
-                    flagComesFromFinishFixing = true;
-                }
-            }
-        }
+    //            if(fixFiller.fillAmount >= 1)
+    //            {
+    //                toolAnimator.SetTrigger("FinishHammerHit");
+    //                isHammerPressing = false;
+    //                OffFillFixFiller();
+    //                flagComesFromFinishFixing = true;
+    //            }
+    //        }
+    //    }
             
-    }
+    //}
 
     private void SleepIntteraction()
     {
@@ -355,5 +376,180 @@ public class Interaction : MonoBehaviour
         {
             helpingText.text = "";
         }
+    }
+
+    private void UpgradeShipParts()
+    {
+        if (playerController.whichWeapon != 2 && !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
+            return;
+
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            toolAnimator.SetTrigger("HitWithHammer");
+            isHammerPressing = true;
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            if (!flagComesFromFinishFixing)
+                toolAnimator.SetTrigger("FinishHammerHit");
+            isHammerPressing = false;
+            OffFillFixFiller();
+            flagComesFromFinishFixing = false;
+        }
+
+
+
+        if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.TransformDirection(Vector3.forward), out RaycastHit raycastHit,
+                    rayUpgradeDistance, maskUpgrade))
+        {
+
+            //error message
+            if (raycastHit.collider.CompareTag("Wing"))
+            {
+                if (saveShip.wingLevel == 3)
+                {
+                    helpingText.text = "Max Upgrade Level";
+                    return;
+                }
+                else if (saveShip.wingLevel == 1 && saveShip.hasWingPieceLevel2 == false)
+                {
+                    helpingText.text = "You don't have\nrequired item to ugrade.";
+                    return;
+                }
+                else if (saveShip.wingLevel == 2 && saveShip.hasWingPieceLevel3 == false)
+                {
+                    helpingText.text = "You don't have\nrequired item to ugrade.";
+                    return;
+                }
+                else
+                {
+                    helpingText.text = "Press left mouse click\nto upgrad wing.";
+                }
+            }
+            if (raycastHit.collider.CompareTag("Booster"))
+            {
+                if (saveShip.boosterRocketLevel == 3)
+                {
+                    helpingText.text = "Max Upgrade Level";
+                    return;
+                }
+                else if (saveShip.boosterRocketLevel == 1 && saveShip.hasBoosterRocketLevel2 == false)
+                {
+                    helpingText.text = "You don't have\nrequired item to ugrade.";
+                    return;
+                }
+                else if (saveShip.boosterRocketLevel == 2 && saveShip.hasBoosterRocketLevel3 == false)
+                {
+                    helpingText.text = "You don't have\nrequired item to ugrade.";
+                    return;
+                }
+                else
+                {
+                    helpingText.text = "Press left mouse click\nto upgrad wing.";
+                }
+            }
+            if (raycastHit.collider.CompareTag("Engine"))
+            {
+                if (saveShip.engineLevel == 3)
+                {
+                    helpingText.text = "Max Upgrade Level";
+                    return;
+                }
+                else if (saveShip.engineLevel == 1 && saveShip.hasEngineLevel2 == false)
+                {
+                    helpingText.text = "You don't have\nrequired item to ugrade.";
+                    return;
+                }
+                else if (saveShip.engineLevel == 2 && saveShip.hasEngineLevel2 == false)
+                {
+                    helpingText.text = "You don't have\nrequired item to ugrade.";
+                    return;
+                }
+                else
+                {
+                    helpingText.text = "Press left mouse click\nto upgrad wing.";
+                }
+            }
+
+            if (isHammerPressing)
+            {
+                helpingText.text = "";
+                if (raycastHit.collider.CompareTag("Wing"))
+                {
+                    OnFillFixFiller();
+
+                    if (fixFiller.fillAmount >= 1)
+                    {
+                        if (saveShip.wingLevel == 1)
+                        {
+                            wingLvl1.SetActive(false);
+                            wingLvl2.SetActive(true);
+                            saveShip.wingLevel = 2;
+                            saveShip.UpdateWing();
+                        }
+                        else if (saveShip.wingLevel == 2)
+                        {
+                            wingLvl3.SetActive(true);
+                            saveShip.wingLevel = 3;
+                            saveShip.UpdateWing();
+                        }
+                        toolAnimator.SetTrigger("FinishHammerHit");
+                        isHammerPressing = false;
+                        OffFillFixFiller();
+                        flagComesFromFinishFixing = true;
+                    }
+                }
+                if (raycastHit.collider.CompareTag("Booster"))
+                {
+                    OnFillFixFiller();
+
+                    if (fixFiller.fillAmount >= 1)
+                    {
+                        if (saveShip.boosterRocketLevel == 1)
+                        {
+                            boosterLvl2.SetActive(true);
+                            saveShip.boosterRocketLevel = 2;
+                            saveShip.UpdateBooster();
+                        }
+                        else if (saveShip.boosterRocketLevel == 2)
+                        {
+                            boosterLvl3.SetActive(true);
+                            saveShip.boosterRocketLevel = 3;
+                            saveShip.UpdateBooster();
+                        }
+                        toolAnimator.SetTrigger("FinishHammerHit");
+                        isHammerPressing = false;
+                        OffFillFixFiller();
+                        flagComesFromFinishFixing = true;
+                    }
+                }
+                if (raycastHit.collider.CompareTag("Engine"))
+                {
+                    OnFillFixFiller();
+
+                    if (fixFiller.fillAmount >= 1)
+                    {
+                        if (saveShip.engineLevel == 1)
+                        {
+                            engineLvl2.SetActive(true);
+                            saveShip.engineLevel = 2;
+                            saveShip.UpdateEngine();
+                        }
+                        else if (saveShip.engineLevel == 2)
+                        {
+                            engineLvl3.SetActive(true);
+                            saveShip.engineLevel = 3;
+                            saveShip.UpdateEngine();
+                        }
+                        toolAnimator.SetTrigger("FinishHammerHit");
+                        isHammerPressing = false;
+                        OffFillFixFiller();
+                        flagComesFromFinishFixing = true;
+                    }
+                }
+            }
+        }
+
     }
 }
