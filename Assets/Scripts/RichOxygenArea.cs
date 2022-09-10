@@ -9,10 +9,6 @@ public class RichOxygenArea : MonoBehaviour
     [Header("Player Flaslight")]
     [SerializeField] private GameObject flashLight;
 
-    private void Update()
-    {
-        Debug.Log(isInsideOxygenRichArea);
-    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == 8)
