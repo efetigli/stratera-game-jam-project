@@ -3,6 +3,14 @@ using TMPro;
 
 public class saveMaterials : MonoBehaviour
 {
+    public bool isPlate1Crafted; 
+    public bool isPlate2Crafted; 
+    public bool isMetalPickaxeCrafted; 
+    public bool isGoldPickaxeCrafted; 
+    public bool isOxygenLevel2Upgrade; 
+    public bool isOxygenLevel3Upgrade; 
+
+
     public bool firstApperance;
     public float metal;
     public float  oil;
@@ -24,6 +32,13 @@ public class saveMaterials : MonoBehaviour
     public void loadMaterialsData(){
         materialData data =  SaveSystem.LoadMaterials();
         firstApperance = data.firstApperance;
+        isPlate1Crafted = data.isPlate1Crafted;
+        isPlate2Crafted = data.isPlate2Crafted;
+        isMetalPickaxeCrafted = data.isMetalPickaxeCrafted;
+        isGoldPickaxeCrafted = data.isGoldPickaxeCrafted;
+        isOxygenLevel2Upgrade = data.isOxygenLevel2Upgrade;
+        isOxygenLevel3Upgrade = data.isOxygenLevel3Upgrade;
+
         metal = data.metal;
         oil = data.oil;
         plastic = data.plastic;
