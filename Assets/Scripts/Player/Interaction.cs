@@ -18,6 +18,7 @@ public class Interaction : MonoBehaviour
     [SerializeField]private TextMeshProUGUI helpingText2;
     [SerializeField]private TextMeshProUGUI helpingText3;
     [SerializeField]private TextMeshProUGUI helpingText4;
+    [SerializeField] private TextMeshProUGUI helpingText5;
 
     [Header("Images")]
     [SerializeField] private GameObject hand;
@@ -149,7 +150,7 @@ public class Interaction : MonoBehaviour
             if (raycastHit.collider.CompareTag("Metal"))
             {
                 hand.SetActive(true);
-                helpingText.text = "Press [E]\nTo Collect";
+                helpingText5.text = "Press [E]\nTo Collect";
                 Debug.Log("asd");
                 if (Input.GetKeyDown(KeyCode.E))
                 {
@@ -190,7 +191,7 @@ public class Interaction : MonoBehaviour
             else if (raycastHit.collider.CompareTag("Gold"))
             {
                 hand.SetActive(true);
-                helpingText.text = "Press [E]\nTo Collect";
+                helpingText5.text = "Press [E]\nTo Collect";
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     pickObjetSound.Play();
@@ -230,7 +231,7 @@ public class Interaction : MonoBehaviour
             else if (raycastHit.collider.CompareTag("Oil"))
             {
                 hand.SetActive(true);
-                helpingText.text = "Press [E]\nTo Collect";
+                helpingText5.text = "Press [E]\nTo Collect";
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     //#region Collect By Looking Pickaxe Type
@@ -276,7 +277,7 @@ public class Interaction : MonoBehaviour
             else if (raycastHit.collider.CompareTag("Wing2"))
             {
                 hand.SetActive(true);
-                helpingText.text = "Press [E]\nTo Collect";
+                helpingText5.text = "Press [E]\nTo Collect";
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     pickObjetSound.Play();
@@ -292,7 +293,7 @@ public class Interaction : MonoBehaviour
             else if (raycastHit.collider.CompareTag("Wing3"))
             {
                 hand.SetActive(true);
-                helpingText.text = "Press [E]\nTo Collect";
+                helpingText5.text = "Press [E]\nTo Collect";
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     pickObjetSound.Play();
@@ -308,7 +309,7 @@ public class Interaction : MonoBehaviour
             else if (raycastHit.collider.CompareTag("Engine2"))
             {
                 hand.SetActive(true);
-                helpingText.text = "Press [E]\nTo Collect";
+                helpingText5.text = "Press [E]\nTo Collect";
                 Debug.Log("asd");
                 if (Input.GetKeyDown(KeyCode.E))
                 {
@@ -325,7 +326,7 @@ public class Interaction : MonoBehaviour
             else if (raycastHit.collider.CompareTag("Engine3"))
             {
                 hand.SetActive(true);
-                helpingText.text = "Press [E]\nTo Collect";
+                helpingText5.text = "Press [E]\nTo Collect";
                 Debug.Log("asd");
                 if (Input.GetKeyDown(KeyCode.E))
                 {
@@ -342,7 +343,7 @@ public class Interaction : MonoBehaviour
             else if (raycastHit.collider.CompareTag("Booster2"))
             {
                 hand.SetActive(true);
-                helpingText.text = "Press [E]\nTo Collect";
+                helpingText5.text = "Press [E]\nTo Collect";
                 Debug.Log("asd");
                 if (Input.GetKeyDown(KeyCode.E))
                 {
@@ -359,7 +360,7 @@ public class Interaction : MonoBehaviour
             else if (raycastHit.collider.CompareTag("Booster3"))
             {
                 hand.SetActive(true);
-                helpingText.text = "Press [E]\nTo Collect";
+                helpingText5.text = "Press [E]\nTo Collect";
                 Debug.Log("asd");
                 if (Input.GetKeyDown(KeyCode.E))
                 {
@@ -378,7 +379,7 @@ public class Interaction : MonoBehaviour
             rayPickableDistance, maskPickable))
         {
             hand.SetActive(false);
-            helpingText.text = "";
+            helpingText5.text = "";
         }
     }
 
