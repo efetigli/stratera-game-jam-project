@@ -8,6 +8,7 @@ public class Interaction : MonoBehaviour
 {
     [Header("Sounds")]
     [SerializeField] private AudioSource pickaxeHit;
+    [SerializeField] public AudioSource hammerHit;
 
     [Header("Which Type of Interaction")]
     [SerializeField] private Image ShowingType;
@@ -547,6 +548,7 @@ public class Interaction : MonoBehaviour
     }
 
     [HideInInspector] public bool flagEsc;
+    public bool flagHammerHit;
 
     private void UpgradeShipParts()
     {
@@ -563,18 +565,30 @@ public class Interaction : MonoBehaviour
         else if (Input.GetMouseButtonUp(0))
         {
             if (!flagComesFromFinishFixing)
+            {
                 toolAnimator.SetBool("FinishHammerHit2", true);
+            }
             //toolAnimator.SetTrigger("FinishHammerHit");
             isHammerPressing = false;
             OffFillFixFiller();
             flagComesFromFinishFixing = false;
         }
 
+        if (isHammerPressing == false)
+        {
+            hammerHit.Stop();
+            flagHammerHit = false;
+        }
 
 
         if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.TransformDirection(Vector3.forward), out RaycastHit raycastHit,
                     rayUpgradeDistance, maskUpgrade))
         {
+            if (isHammerPressing && flagHammerHit==false)
+            {
+                hammerHit.Play();
+                flagHammerHit = true;
+            }
             wrench.SetActive(true);
             //error message
             if (raycastHit.collider.CompareTag("Wing"))
@@ -707,6 +721,8 @@ public class Interaction : MonoBehaviour
                         }
                         //toolAnimator.SetTrigger("FinishHammerHit");
                         toolAnimator.SetBool("FinishHammerHit2", true);
+                        hammerHit.Stop();
+                        flagHammerHit = false;
                         isHammerPressing = false;
                         OffFillFixFiller();
                         flagComesFromFinishFixing = true;
@@ -732,6 +748,8 @@ public class Interaction : MonoBehaviour
                         }
                         toolAnimator.SetTrigger("FinishHammerHit");
                         toolAnimator.SetBool("FinishHammerHit2", true);
+                        hammerHit.Stop();
+                        flagHammerHit = false;
                         isHammerPressing = false;
                         OffFillFixFiller();
                         flagComesFromFinishFixing = true;
@@ -757,6 +775,8 @@ public class Interaction : MonoBehaviour
                         }
                         toolAnimator.SetTrigger("FinishHammerHit");
                         toolAnimator.SetBool("FinishHammerHit2", true);
+                        hammerHit.Stop();
+                        flagHammerHit = false;
                         isHammerPressing = false;
                         OffFillFixFiller();
                         flagComesFromFinishFixing = true;
@@ -773,6 +793,8 @@ public class Interaction : MonoBehaviour
                         saveShip.UpdateShipPartLostPlate();
                         toolAnimator.SetTrigger("FinishHammerHit");
                         toolAnimator.SetBool("FinishHammerHit2", true);
+                        hammerHit.Stop();
+                        flagHammerHit = false;
                         isHammerPressing = false;
                         OffFillFixFiller();
                         flagComesFromFinishFixing = true;
@@ -789,6 +811,9 @@ public class Interaction : MonoBehaviour
                         saveShip.UpdateShipPartLostPlate();
                         toolAnimator.SetTrigger("FinishHammerHit");
                         toolAnimator.SetBool("FinishHammerHit2", true);
+                        hammerHit.Stop();
+                        flagHammerHit = false;
+                        hammerHit.Stop();
                         isHammerPressing = false;
                         OffFillFixFiller();
                         flagComesFromFinishFixing = true;
@@ -801,6 +826,8 @@ public class Interaction : MonoBehaviour
                     rayUpgradeDistance, maskUpgrade))
         {
             //toolAnimator.SetBool("FinishHammerHit2", true);
+            hammerHit.Stop();
+            flagHammerHit = false;
             wrench.SetActive(false);
             helpingText3.text = "";
         }
