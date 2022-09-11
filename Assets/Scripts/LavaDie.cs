@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Die : MonoBehaviour
+public class LavaDie : MonoBehaviour
 {
     [Header("OxygenSystem")]
     [SerializeField] private Oxygen oxygen;
@@ -23,52 +23,53 @@ public class Die : MonoBehaviour
     [SerializeField] private saveShip mySaveShip;
     [SerializeField] private saveMaterials mySaveMaterial;
 
+    public bool lavaTouch;
+
+    private void Awake()
+    {
+        lavaTouch = false;
+    }
+
     private void Update()
     {
-        CheckOxygen();
+        DyingLava();
     }
-
-    private void CheckOxygen()
+    private void DyingLava()
     {
-        if (oxygen.GetOxygenValue() <= 0.01)
-        {
-            deathUI.SetActive(true);
-            Dying();
-        }
-        else if(oxygen.GetOxygenValue() > 0.01)
-        {
-            deathTimer = 0;
-            deathUI.SetActive(false);
-            this.GetComponent<Die>().enabled = false;
-        }
-    }
-
-    private void Dying()
-    {
-        if(this.GetComponent<Die>().enabled == false)
-        {
+        if (lavaTouch == false)
             return;
-        }
 
         deathTimer += Time.deltaTime;
-        if(deathTimer >= deathTime)
+        if (deathTimer >= deathTime)
         {
             openScreens.DieCloseComponents();
             if (deathTimer <= (deathTime + 0.2f))
             {
                 this.GetComponent<Rigidbody>().velocity = new Vector3(1f, this.GetComponent<Rigidbody>().velocity.y, 1f);
-                Invoke("LoadScene",3f);
+                Invoke("LoadScene", 3f);
             }
             else if (deathTimer <= (deathTime + 1f) && deathTimer > (deathTime + 1.6f))
             {
                 this.GetComponent<Rigidbody>().velocity = new Vector3(0f, this.GetComponent<Rigidbody>().velocity.y, 0f);
-                Debug.Log(2);
             }
             mySaveMaterial.loadMaterialsData();
             mySaveShip.loadShipData();
         }
     }
-    private void LoadScene(){
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Lava"))
+        {
+            lavaTouch = true;
+            deathTimer = deathTime;
+            deathUI.SetActive(true);
+        }
+    }
+
+    private void LoadScene()
+    {
         SceneManager.LoadScene(1);
     }
 }
