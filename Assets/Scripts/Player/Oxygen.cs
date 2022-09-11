@@ -28,33 +28,29 @@ public class Oxygen : MonoBehaviour
     [Header("Die")]
     [SerializeField] private Die die;
 
+    private bool flag;
+
     // Start is called before the first frame update
     void Start()
     {
         currentOxygen = 1;
         maxOxygen = 1;
         UpdateOxygenLevel();
+        flag = false;
+    }
 
-        if(mySaveMaterial.oxygenSystemLevel == 1)
-        {
-            oxygenbar.maxValue = oxygenSystemLevel1Value;
-            oxygenbar.value = oxygenSystemLevel1Value;
-        }
-        else if (mySaveMaterial.oxygenSystemLevel == 2)
-        {
-            oxygenbar.maxValue = oxygenSystemLevel2Value;
-            oxygenbar.value = oxygenSystemLevel2Value;
-        }
-        else if (mySaveMaterial.oxygenSystemLevel == 3)
-        {
-            oxygenbar.maxValue = oxygenSystemLevel3Value;
-            oxygenbar.value = oxygenSystemLevel3Value;
-        }
+    private void LoadOXygen()
+    {
+        if (flag == true)
+            return;
+        UpdateOxygenLevel();
+        flag = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        LoadOXygen();
         CurrentOxygenValue();
         OxygenArea();
         LowOxygen();
@@ -89,14 +85,20 @@ public class Oxygen : MonoBehaviour
 
     public void UpdateOxygenLevel()
     {
-        if(mySaveMaterial.oxygenSystemLevel == 2)
+        if (mySaveMaterial.oxygenSystemLevel == 1)
+        {
+            oxygenbar.maxValue = oxygenSystemLevel1Value;
+            oxygenbar.value = oxygenSystemLevel1Value;
+        }
+        else if (mySaveMaterial.oxygenSystemLevel == 2)
         {
             oxygenbar.maxValue = oxygenSystemLevel2Value;
+            oxygenbar.value = oxygenSystemLevel2Value;
         }
-        else if(mySaveMaterial.oxygenSystemLevel == 3)
+        else if (mySaveMaterial.oxygenSystemLevel == 3)
         {
             oxygenbar.maxValue = oxygenSystemLevel3Value;
-
+            oxygenbar.value = oxygenSystemLevel3Value;
         }
     }
 

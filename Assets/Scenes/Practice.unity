@@ -1743,6 +1743,9 @@ MonoBehaviour:
   - {fileID: 1240233065}
   - {fileID: 1412050187}
   - {fileID: 281675552}
+  pickaxe: {fileID: 788027098}
+  screenCraftSystem: {fileID: 746537397}
+  canvasCraftSystem: {fileID: 2135821721}
 --- !u!1 &75698329
 GameObject:
   m_ObjectHideFlags: 0
@@ -10190,7 +10193,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 47, y: -991}
+  m_AnchoredPosition: {x: 47, y: -1064}
   m_SizeDelta: {x: 726.8969, y: 92.4488}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &450276905
@@ -11593,7 +11596,7 @@ MonoBehaviour:
   oxygenbar: {fileID: 450276905}
   oxygenbarTransform: {fileID: 450276904}
   regenOxygenSpeed: 0.1
-  lossOxygenSpeed: 0.05
+  lossOxygenSpeed: 15
   richOxygenArea: {fileID: 160991111}
   mySaveMaterial: {fileID: 1686232118}
   oxygenBarHeight: 100
@@ -19771,6 +19774,7 @@ MonoBehaviour:
   metal: {fileID: 2100000, guid: e06acd56b2f44bf468c4c99b6f07907a, type: 2}
   gold: {fileID: 2100000, guid: 5c623a02c7cc425458febd7b17b9a7c8, type: 2}
   pickaxeHead: {fileID: 1424575854}
+  pickaxeTop: {fileID: 1217172988}
   mySaveMaterials: {fileID: 1686232118}
 --- !u!1 &791006265
 GameObject:
@@ -28345,6 +28349,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 7902807643039853086, guid: 5a5396a5def4b8e45bb5e24e12589439, type: 3}
+--- !u!1 &1217172988 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -466329591000292508, guid: 80afef7b2b2c61c45a09b07ccdb34284, type: 3}
+  m_PrefabInstance: {fileID: 1739644861}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1217202562
 GameObject:
   m_ObjectHideFlags: 0
@@ -34028,7 +34037,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.6084906, g: 0.95240474, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 3
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -38197,13 +38206,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 596c12a700b6c0c43be6c870cb9f0e42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstApperance: 1
+  isPlate1Crafted: 0
+  isPlate2Crafted: 0
+  isMetalPickaxeCrafted: 0
+  isGoldPickaxeCrafted: 0
+  isOxygenLevel2Upgrade: 0
+  isOxygenLevel3Upgrade: 0
+  firstApperance: 0
   metal: 0
   oil: 0
   plastic: 0
   gold: 0
   oxygenSystemLevel: 1
-  pickaxeType: Stone
+  pickaxeType: 
   metalCount: {fileID: 0}
   oilCount: {fileID: 0}
   plasticCount: {fileID: 0}
@@ -43008,7 +43023,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.6084906, g: 0.95240474, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 3
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -48584,6 +48599,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 596c12a700b6c0c43be6c870cb9f0e42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlate1Crafted: 0
+  isPlate2Crafted: 0
+  isMetalPickaxeCrafted: 0
+  isGoldPickaxeCrafted: 0
+  isOxygenLevel2Upgrade: 0
+  isOxygenLevel3Upgrade: 0
   firstApperance: 0
   metal: 0
   oil: 0

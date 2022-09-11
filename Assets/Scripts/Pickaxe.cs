@@ -11,6 +11,7 @@ public class Pickaxe : MonoBehaviour
 
     [Header("Pickaxe Head")]
     [SerializeField] private GameObject pickaxeHead;
+    [SerializeField] private GameObject pickaxeTop;
     private string typeOfPickaxe;
 
     [Header("Save Materials")]
@@ -27,15 +28,19 @@ public class Pickaxe : MonoBehaviour
         if (typeOfPickaxe == "Stone")
         {
             pickaxeHead.GetComponent<MeshRenderer>().material = stone;
+            pickaxeTop.GetComponent<MeshRenderer>().material = stone;
+            pickaxeTop.GetComponent<MeshRenderer>().material = stone;
         }
         else if (typeOfPickaxe == "Metal")
         {
             pickaxeHead.GetComponent<MeshRenderer>().material = metal;
+            pickaxeTop.GetComponent<MeshRenderer>().material = metal;
 
         }
         else if (typeOfPickaxe == "Gold")
         {
             pickaxeHead.GetComponent<MeshRenderer>().material = gold;
+            pickaxeTop.GetComponent<MeshRenderer>().material = gold;
 
         }
     }
