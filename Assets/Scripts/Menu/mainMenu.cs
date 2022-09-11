@@ -23,9 +23,10 @@ public class mainMenu : menuParent
         mySaveShip.durability = 50;
         mySaveShip.aerodynamics = 150;
         mySaveShip.hasLostPlate1 = false;
-        mySaveShip.hasBoosterRocketLevel2 = false;
         mySaveShip.isLostPlate1 = false;
         mySaveShip.isLostPlate2 = false;
+        mySaveShip.hasBoosterRocketLevel2 = false;
+        mySaveShip.hasBoosterRocketLevel3 = false;
         mySaveShip.hasWingPieceLevel2 = false;
         mySaveShip.hasWingPieceLevel3 = false;
         mySaveShip.hasEngineLevel2 = false;

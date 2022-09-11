@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Die : MonoBehaviour
 {
@@ -51,6 +52,7 @@ public class Die : MonoBehaviour
             if (deathTimer <= (deathTime + 0.2f))
             {
                 this.GetComponent<Rigidbody>().velocity = new Vector3(1f, this.GetComponent<Rigidbody>().velocity.y, 1f);
+                Invoke("LoadScene",3f);
             }
             else if (deathTimer <= (deathTime + 1f) && deathTimer > (deathTime + 1.6f))
             {
@@ -60,5 +62,8 @@ public class Die : MonoBehaviour
             mySaveMaterial.loadMaterialsData();
             mySaveShip.loadShipData();
         }
+    }
+    private void LoadScene(){
+        SceneManager.LoadScene(1);
     }
 }
