@@ -56,11 +56,9 @@ public class LavaDie : MonoBehaviour
             mySaveShip.loadShipData();
         }
     }
-
-
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.CompareTag("Lava"))
+        if (collision.gameObject.CompareTag("Lava"))
         {
             lavaTouch = true;
             deathTimer = deathTime;
