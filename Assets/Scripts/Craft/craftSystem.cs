@@ -33,8 +33,8 @@ public class craftSystem : MonoBehaviour
     public TextMeshProUGUI oilCount; 
 
     [Header("OS Texts")]
-    public TextMeshProUGUI oSLevel2;
-    public TextMeshProUGUI oSLevel3;
+    public Image oSLevel2;
+    public Image oSLevel3;
     public TextMeshProUGUI osPlastic1;
     public TextMeshProUGUI osPlastic2;
     public TextMeshProUGUI oSMetal1;
@@ -71,11 +71,11 @@ public class craftSystem : MonoBehaviour
         Image7.enabled = false;
     }
     void FixedUpdate(){
-        //Debug.Log(mySaveMaterials.metal);
-        //Debug.Log(mySaveMaterials.plastic);
-        //Debug.Log(mySaveMaterials.oil);
-        oilCount.text = (oilSlider.value * oilPerPlastic).ToString("0");
-        plasticCount.text = oilSlider.value.ToString("0");
+        ////Debug.Log(mySaveMaterials.metal);
+        ////Debug.Log(mySaveMaterials.plastic);
+        ////Debug.Log(mySaveMaterials.oil);
+        //oilCount.text = (oilSlider.value * oilPerPlastic).ToString("0");
+        //plasticCount.text = oilSlider.value.ToString("0");
     }
     public void craftPlate1(){
         if(plate1ReqMetal <= mySaveMaterials.metal){
@@ -147,8 +147,11 @@ public class craftSystem : MonoBehaviour
     public void upgradeMP(){
         if(mPReqMetal <= mySaveMaterials.metal){
             mySaveMaterials.metal = mySaveMaterials.metal - mPReqMetal;
-            mySaveMaterials.pickaxeType = "Metal";
-            myPickAxe.AssignPickaxeHead();
+            if(mySaveMaterials.pickaxeType != "Gold")
+            {
+                mySaveMaterials.pickaxeType = "Metal";
+                myPickAxe.AssignPickaxeHead();
+            }
             mPUpgradeButton.enabled = false;
             Image3.enabled = true;
             if (isScreen)

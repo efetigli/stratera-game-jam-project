@@ -41,6 +41,11 @@ public class ShipStatsCanvas : MonoBehaviour
         SliderUpdate();
     }
 
+    private void Update()
+    {
+        WhichPancart();
+    }
+
 
     private void WhichPancart()
     {

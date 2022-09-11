@@ -16,6 +16,10 @@ TagManager:
   - Wing
   - Engine
   - Booster
+  - Crash1
+  - Crash2
+  - Rescue
+  - StatScreen
   layers:
   - Default
   - TransparentFX
