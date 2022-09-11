@@ -46,88 +46,65 @@ public class saveShip : MonoBehaviour
 
     public void UpdateShipPartLostPlate()
     {
-            durability += 100;
+        durability += 100;
+        Checker();
     }
 
     public void UpdateEngine()
     {
-        if (engineLevel == 1)
+        if (engineLevel == 2)
         {
-            speed += 30;
-            durability += 20;
-        }
-        else if (engineLevel == 2)
-        {
-            speed -= 30;
-            durability -= 20;
-
-            speed += 60;
-            durability += 30;
+            durability += 25;
+            aerodynamics += 25;
+            speed += 50;
         }
         else if (engineLevel == 3)
         {
-            speed -= 60;
-            durability -= 30;
-
-            speed += 90;
-            durability += 50;
-            aerodynamics += 100;
+            durability += 25;
+            aerodynamics += 25;
+            speed += 50;
         }
+        Checker();
     }
 
     public void UpdateWing()
     {
-        if (wingLevel == 1)
+        if (wingLevel == 2)
         {
-            speed += 25;
-            durability += 25;
-            aerodynamics += 50;
-        }
-        else if (wingLevel == 2)
-        {
-            speed -= 25;
-            durability -= 25;
-            aerodynamics -= 50;
-
-            speed += 50;
-            durability += 25;
+            durability += 50;
             aerodynamics += 100;
+            speed += 40;
         }
         else if (wingLevel == 3)
         {
-            speed -= 50;
-            durability -= 25;
-            aerodynamics -= 100;
-
-            speed += 100;
-            durability += 100;
-            aerodynamics += 150;
+            durability += 50;
+            aerodynamics += 100;
+            speed += 40;
         }
+        Checker();
     }
 
     public void UpdateBooster()
     {
-        if (boosterRocketLevel == 1)
+        if (boosterRocketLevel == 2)
         {
-            speed += 30;
-            durability += 25;
-        }
-        else if (boosterRocketLevel == 2)
-        {
-            speed -= 30;
-            durability -= 25;
-
-            speed += 60;
-            durability += 75;
+            durability += 50;
+            aerodynamics += 50;
+            speed += 50;
         }
         else if (boosterRocketLevel == 3)
         {
-            speed -= 60;
-            durability -= 75;
-
-            speed += 90;
-            durability += 100;
-            aerodynamics += 100;
+            durability += 50;
+            aerodynamics += 50;
+            speed += 50;
         }
+        Checker();
+    }
+
+    public bool finishGame;
+    private void Checker()
+    {
+        if (durability >= 500 && speed >= 500 && speed >= 500)
+            finishGame = true;
     }
 }

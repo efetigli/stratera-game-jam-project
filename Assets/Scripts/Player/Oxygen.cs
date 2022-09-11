@@ -73,20 +73,13 @@ public class Oxygen : MonoBehaviour
 
     public void UpdateOxygenLevel()
     {
-        if(mySaveMaterial.oxygenSystemLevel == 1)
+        if(mySaveMaterial.oxygenSystemLevel == 2)
         {
-            oxygenbarTransform.sizeDelta = new Vector2(oxygenSystemLevel1Value, oxygenBarHeight);
-            oxygenbar.maxValue = 1;
-        }
-        else if(mySaveMaterial.oxygenSystemLevel == 2)
-        {
-            oxygenbarTransform.sizeDelta = new Vector2(oxygenSystemLevel2Value, oxygenBarHeight);
-            oxygenbar.maxValue = (oxygenSystemLevel2Value / oxygenSystemLevel1Value) + 1;
+            oxygenbar.maxValue = oxygenSystemLevel2Value;
         }
         else if(mySaveMaterial.oxygenSystemLevel == 3)
         {
-            oxygenbarTransform.sizeDelta = new Vector2(oxygenSystemLevel3Value, oxygenBarHeight);
-            oxygenbar.maxValue = (oxygenSystemLevel3Value / oxygenSystemLevel1Value) + 1;
+            oxygenbar.maxValue = oxygenSystemLevel3Value;
 
         }
     }

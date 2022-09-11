@@ -75,6 +75,7 @@ public class InputReader : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            this.GetComponent<Interaction>().flagEsc = true;
             cursorManager.UnlockCursor();
             pauseMenu.SetActive(true);
             pauseManager.PauseGame();
