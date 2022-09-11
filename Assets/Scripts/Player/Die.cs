@@ -45,6 +45,11 @@ public class Die : MonoBehaviour
 
     private void Dying()
     {
+        if(this.GetComponent<Die>().enabled == false)
+        {
+            return;
+        }
+
         deathTimer += Time.deltaTime;
         if(deathTimer >= deathTime)
         {
