@@ -8,10 +8,10 @@ public class CursorManager : MonoBehaviour
 
     private void Awake()
     {
-        if (InvisibleInBeginning)
-            LockCursor();
-        else if (!InvisibleInBeginning)
-            UnlockCursor();
+        //if (InvisibleInBeginning)
+        //    LockCursor();
+        //else if (!InvisibleInBeginning)
+        //    UnlockCursor();
     }
 
     public void LockCursor()

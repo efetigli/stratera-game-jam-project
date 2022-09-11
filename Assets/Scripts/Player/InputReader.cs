@@ -5,7 +5,7 @@ using UnityEngine;
 public class InputReader : MonoBehaviour
 {
     [Header("Mouse Settings")]
-    [SerializeField] private float mouseSensitivity;
+    [SerializeField] public float mouseSensitivity;
 
     public Vector2 move { get; private set; }
     public float mouseX { get; private set; }
@@ -23,7 +23,10 @@ public class InputReader : MonoBehaviour
     [Header("Cursor Manager")]
     [SerializeField] private CursorManager cursorManager;
 
-
+    public void AdjustMouseSensitivity(float sensitivity)
+    {
+        mouseSensitivity = sensitivity;
+    }
 
     void Start()
     {
@@ -78,6 +81,8 @@ public class InputReader : MonoBehaviour
             this.GetComponent<Interaction>().flagEsc = true;
             this.GetComponent<Interaction>().hammerHit.Stop();
             this.GetComponent<Interaction>().flagHammerHit = false;
+            this.GetComponent<PlayerController>().normalStepSound.enabled = false;
+            this.GetComponent<PlayerController>().fastStepSound.enabled = false;
             cursorManager.UnlockCursor();
             pauseMenu.SetActive(true);
             pauseManager.PauseGame();

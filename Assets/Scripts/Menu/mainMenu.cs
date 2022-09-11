@@ -11,6 +11,7 @@ public class mainMenu : menuParent
         base.Start();
     }
     public void newGame(){
+        mySaveMaterials.firstApperance = true;
         mySaveMaterials.metal = 0;
         mySaveMaterials.oil = 0;
         mySaveMaterials.plastic = 0;

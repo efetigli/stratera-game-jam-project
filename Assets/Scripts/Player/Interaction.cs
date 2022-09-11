@@ -9,12 +9,14 @@ public class Interaction : MonoBehaviour
     [Header("Sounds")]
     [SerializeField] private AudioSource pickaxeHit;
     [SerializeField] public AudioSource hammerHit;
+    [SerializeField] public AudioSource pickObjetSound;
 
     [Header("Which Type of Interaction")]
     [SerializeField] private Image ShowingType;
     [SerializeField] private TextMeshProUGUI helpingText;
     [SerializeField]private TextMeshProUGUI helpingText2;
     [SerializeField]private TextMeshProUGUI helpingText3;
+    [SerializeField]private TextMeshProUGUI helpingText4;
 
     [Header("Images")]
     [SerializeField] private GameObject hand;
@@ -146,10 +148,11 @@ public class Interaction : MonoBehaviour
             if (raycastHit.collider.CompareTag("Metal"))
             {
                 hand.SetActive(true);
-                helpingText.text = "Press [E] \n to collect";
+                helpingText.text = "Press [E]\nTo Collect";
                 Debug.Log("asd");
                 if (Input.GetKeyDown(KeyCode.E))
                 {
+                    pickObjetSound.Play();
                     #region Collect By Looking Pickaxe Type
                     if (pickaxe.GetTypeOfPickaxe() == "Stone")
                     {
@@ -186,9 +189,10 @@ public class Interaction : MonoBehaviour
             else if (raycastHit.collider.CompareTag("Gold"))
             {
                 hand.SetActive(true);
-                helpingText.text = "Press [E] \n to collect";
+                helpingText.text = "Press [E]\nTo Collect";
                 if (Input.GetKeyDown(KeyCode.E))
                 {
+                    pickObjetSound.Play();
                     #region Collect By Looking Pickaxe Type
                     if (pickaxe.GetTypeOfPickaxe() == "Stone")
                     {
@@ -225,7 +229,7 @@ public class Interaction : MonoBehaviour
             else if (raycastHit.collider.CompareTag("Oil"))
             {
                 hand.SetActive(true);
-                helpingText.text = "Press [E] \n to collect";
+                helpingText.text = "Press [E]\nTo Collect";
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     //#region Collect By Looking Pickaxe Type
@@ -257,6 +261,7 @@ public class Interaction : MonoBehaviour
                     //    feedbackOreUI.GetComponent<FeedBackOrePlayerUI>().closeTimer = 0f;
                     //}
                     //#endregion
+                    pickObjetSound.Play();
                     feedbackOreUI.SetActive(false);
                     mySaveMaterials.oil += 200;
                     amountCollectNewOre = 200.ToString();
@@ -270,9 +275,10 @@ public class Interaction : MonoBehaviour
             else if (raycastHit.collider.CompareTag("Wing2"))
             {
                 hand.SetActive(true);
-                helpingText.text = "Press [E] \n to collect";
+                helpingText.text = "Press [E]\nTo Collect";
                 if (Input.GetKeyDown(KeyCode.E))
                 {
+                    pickObjetSound.Play();
                     isCollectNewOre = true;
                     feedbackOreUI.SetActive(true);
                     feedbackOreUI.GetComponent<FeedBackOrePlayerUI>().closeTimer = 0f;
@@ -285,9 +291,10 @@ public class Interaction : MonoBehaviour
             else if (raycastHit.collider.CompareTag("Wing3"))
             {
                 hand.SetActive(true);
-                helpingText.text = "Press [E] \n to collect";
+                helpingText.text = "Press [E]\nTo Collect";
                 if (Input.GetKeyDown(KeyCode.E))
                 {
+                    pickObjetSound.Play();
                     feedbackOreUI.SetActive(true);
                     amountCollectNewOre = "Wing Lvl.3";
                     whichCollectNewOreType = "";
@@ -300,10 +307,11 @@ public class Interaction : MonoBehaviour
             else if (raycastHit.collider.CompareTag("Engine2"))
             {
                 hand.SetActive(true);
-                helpingText.text = "Press [E] \n to collect";
+                helpingText.text = "Press [E]\nTo Collect";
                 Debug.Log("asd");
                 if (Input.GetKeyDown(KeyCode.E))
                 {
+                    pickObjetSound.Play();
                     feedbackOreUI.SetActive(true);
                     amountCollectNewOre = "Engine Lvl.2";
                     whichCollectNewOreType = "";
@@ -316,10 +324,11 @@ public class Interaction : MonoBehaviour
             else if (raycastHit.collider.CompareTag("Engine3"))
             {
                 hand.SetActive(true);
-                helpingText.text = "Press [E] \n to collect";
+                helpingText.text = "Press [E]\nTo Collect";
                 Debug.Log("asd");
                 if (Input.GetKeyDown(KeyCode.E))
                 {
+                    pickObjetSound.Play();
                     feedbackOreUI.SetActive(true);
                     amountCollectNewOre = "Engine Lvl.3";
                     whichCollectNewOreType = "";
@@ -332,10 +341,11 @@ public class Interaction : MonoBehaviour
             else if (raycastHit.collider.CompareTag("Booster2"))
             {
                 hand.SetActive(true);
-                helpingText.text = "Press [E] \n to collect";
+                helpingText.text = "Press [E]\nTo Collect";
                 Debug.Log("asd");
                 if (Input.GetKeyDown(KeyCode.E))
                 {
+                    pickObjetSound.Play();
                     feedbackOreUI.SetActive(true);
                     amountCollectNewOre = "Booster Rocker Lvl.2";
                     whichCollectNewOreType = "";
@@ -348,10 +358,11 @@ public class Interaction : MonoBehaviour
             else if (raycastHit.collider.CompareTag("Booster3"))
             {
                 hand.SetActive(true);
-                helpingText.text = "Press [E] \n to collect";
+                helpingText.text = "Press [E]\nTo Collect";
                 Debug.Log("asd");
                 if (Input.GetKeyDown(KeyCode.E))
                 {
+                    pickObjetSound.Play();
                     feedbackOreUI.SetActive(true);
                     amountCollectNewOre = "Booster Rocker Lvl.3";
                     whichCollectNewOreType = "";
@@ -384,7 +395,6 @@ public class Interaction : MonoBehaviour
                 rayPickaxeHitDistance, maskPickaxeUsing))
             {
                 pickaxeImage.SetActive(true);
-                helpingText.text = "Press [E] \n to collect";
                 if (raycastHit.collider.CompareTag("Resource"))
                 {
                     if (pickaxe.GetTypeOfPickaxe() == "Stone")
@@ -463,9 +473,8 @@ public class Interaction : MonoBehaviour
         {
             if (raycastHit.collider.CompareTag("Bed"))
             {
-                Debug.Log(isSleeping);
                 if(!isSleeping)
-                    helpingText2.text = "Press [E] \n to Sleep";
+                    helpingText2.text = "Press [E]\nTo Sleep";
 
                 if (Input.GetKeyDown(KeyCode.E))
                 {
@@ -515,7 +524,7 @@ public class Interaction : MonoBehaviour
         {
             if (raycastHit.collider.CompareTag("UgradeScreen"))
             {
-                helpingText.text = "Press [E] \n to Open Screen";
+                helpingText.text = "Press [E]\nTo Open Screen";
 
                 if (Input.GetKeyDown(KeyCode.E))
                 {
@@ -528,7 +537,7 @@ public class Interaction : MonoBehaviour
             }
             if (raycastHit.collider.CompareTag("StatScreen"))
             {
-                helpingText.text = "Press [E] \n to Open Screen";
+                helpingText.text = "Press [E]\nTo Open Screen";
 
                 if (Input.GetKeyDown(KeyCode.E))
                 {
@@ -574,21 +583,21 @@ public class Interaction : MonoBehaviour
             flagComesFromFinishFixing = false;
         }
 
-        if (isHammerPressing == false)
-        {
-            hammerHit.Stop();
-            flagHammerHit = false;
-        }
+        //if (isHammerPressing == false)
+        //{
+        //    hammerHit.Stop();
+        //    flagHammerHit = false;
+        //}
 
 
         if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.TransformDirection(Vector3.forward), out RaycastHit raycastHit,
                     rayUpgradeDistance, maskUpgrade))
         {
-            if (isHammerPressing && flagHammerHit==false)
-            {
-                hammerHit.Play();
-                flagHammerHit = true;
-            }
+            //if (isHammerPressing && flagHammerHit==false)
+            //{
+            //    hammerHit.Play();
+            //    flagHammerHit = true;
+            //}
             wrench.SetActive(true);
             //error message
             if (raycastHit.collider.CompareTag("Wing"))
@@ -596,22 +605,22 @@ public class Interaction : MonoBehaviour
                 if (saveShip.wingLevel == 3)
                 {
                     wrench.SetActive(false);
-                    helpingText3.text = "Max Upgrade Level";
+                    helpingText3.text = "Reach Max Upgrade Level";
                     return;
                 }
                 else if (saveShip.wingLevel == 1 && saveShip.hasWingPieceLevel2 == false)
                 {
-                    helpingText3.text = "You don't have\nrequired item to ugrade.";
+                    helpingText3.text = "You Don't Have\nWing Lvl.2 To Upgrade";
                     return;
                 }
                 else if (saveShip.wingLevel == 2 && saveShip.hasWingPieceLevel3 == false)
                 {
-                    helpingText3.text = "You don't have\nrequired item to ugrade.";
+                    helpingText3.text = "You Don't Have\nWing Lvl.3 To Upgrade";
                     return;
                 }
                 else
                 {
-                    helpingText3.text = "Press left mouse click\nto upgrad wing.";
+                    helpingText3.text = "Click Left Mouse Click\nTo Upgrade";
                 }
             }
             if (raycastHit.collider.CompareTag("Booster"))
@@ -619,22 +628,22 @@ public class Interaction : MonoBehaviour
                 if (saveShip.boosterRocketLevel == 3)
                 {
                     wrench.SetActive(false);
-                    helpingText3.text = "Max Upgrade Level";
+                    helpingText3.text = "Reach Max Upgrade Level";
                     return;
                 }
                 else if (saveShip.boosterRocketLevel == 1 && saveShip.hasBoosterRocketLevel2 == false)
                 {
-                    helpingText3.text = "You don't have\nrequired item to ugrade.";
+                    helpingText3.text = "You Don't Have\nBooster Rocket Lvl.2 To Upgrade";
                     return;
                 }
                 else if (saveShip.boosterRocketLevel == 2 && saveShip.hasBoosterRocketLevel3 == false)
                 {
-                    helpingText3.text = "You don't have\nrequired item to ugrade.";
+                    helpingText3.text = "You Don't Have\nBooster Rocket Lvl.3 To Upgrade";
                     return;
                 }
                 else
                 {
-                    helpingText3.text = "Press left mouse click\nto upgrad booster rocket.";
+                    helpingText3.text = "Click Left Mouse Click\nTo Upgrade";
                 }
             }
             if (raycastHit.collider.CompareTag("Engine"))
@@ -642,22 +651,22 @@ public class Interaction : MonoBehaviour
                 if (saveShip.engineLevel == 3)
                 {
                     wrench.SetActive(false);
-                    helpingText3.text = "Max Upgrade Level";
+                    helpingText3.text = "Reach Max Upgrade Level";
                     return;
                 }
                 else if (saveShip.engineLevel == 1 && saveShip.hasEngineLevel2 == false)
                 {
-                    helpingText3.text = "You don't have\nrequired item to ugrade.";
+                    helpingText3.text = "You Don't Have\nEngine Lvl.2 To Upgrade";
                     return;
                 }
                 else if (saveShip.engineLevel == 2 && saveShip.hasEngineLevel2 == false)
                 {
-                    helpingText3.text = "You don't have\nrequired item to ugrade.";
+                    helpingText3.text = "You Don't Have\nEngine Lvl.3 To Upgrade";
                     return;
                 }
                 else
                 {
-                    helpingText3.text = "Press left mouse click\nto upgrad engine.";
+                    helpingText3.text = "Click Left Mouse Click\nTo Upgrade";
                 }
             }
             if (raycastHit.collider.CompareTag("Crash1"))
@@ -665,17 +674,17 @@ public class Interaction : MonoBehaviour
                 if (saveShip.isLostPlate1 == true)
                 {
                     wrench.SetActive(false);
-                    helpingText3.text = "Max Upgrade Level";
+                    helpingText3.text = "Reach Max Upgrade Level";
                     return;
                 }
                 else if (saveShip.isLostPlate1 == false && saveShip.hasLostPlate1 == false)
                 {
-                    helpingText3.text = "You don't have\nrequired item to ugrade.";
+                    helpingText3.text = "You Don't Have\nPlate1 To Upgrade";
                     return;
                 }
                 else
                 {
-                    helpingText3.text = "Press left mouse click\nto fix crash.";
+                    helpingText3.text = "Click Left Mouse Click\nTo Upgrade";
                 }
             }
             if (raycastHit.collider.CompareTag("Crash2"))
@@ -683,17 +692,17 @@ public class Interaction : MonoBehaviour
                 if (saveShip.isLostPlate2 == true)
                 {
                     wrench.SetActive(false);
-                    helpingText3.text = "Max Upgrade Level";
+                    helpingText3.text = "Reach Max Upgrade Level";
                     return;
                 }
                 else if (saveShip.isLostPlate2 == false && saveShip.hasLostPlate2 == false)
                 {
-                    helpingText3.text = "You don't have\nrequired item to ugrade.";
+                    helpingText3.text = "You Don't Have\nPlate2 To Upgrade";
                     return;
                 }
                 else
                 {
-                    helpingText3.text = "Press left mouse click\nto fix crash.";
+                    helpingText3.text = "Click Left Mouse Click\nTo Upgrade";
                 }
             }
 
@@ -721,8 +730,8 @@ public class Interaction : MonoBehaviour
                         }
                         //toolAnimator.SetTrigger("FinishHammerHit");
                         toolAnimator.SetBool("FinishHammerHit2", true);
-                        hammerHit.Stop();
-                        flagHammerHit = false;
+                        //hammerHit.Stop();
+                        //flagHammerHit = false;
                         isHammerPressing = false;
                         OffFillFixFiller();
                         flagComesFromFinishFixing = true;
@@ -748,8 +757,8 @@ public class Interaction : MonoBehaviour
                         }
                         toolAnimator.SetTrigger("FinishHammerHit");
                         toolAnimator.SetBool("FinishHammerHit2", true);
-                        hammerHit.Stop();
-                        flagHammerHit = false;
+                        //hammerHit.Stop();
+                        //flagHammerHit = false;
                         isHammerPressing = false;
                         OffFillFixFiller();
                         flagComesFromFinishFixing = true;
@@ -775,8 +784,8 @@ public class Interaction : MonoBehaviour
                         }
                         toolAnimator.SetTrigger("FinishHammerHit");
                         toolAnimator.SetBool("FinishHammerHit2", true);
-                        hammerHit.Stop();
-                        flagHammerHit = false;
+                        //hammerHit.Stop();
+                        //flagHammerHit = false;
                         isHammerPressing = false;
                         OffFillFixFiller();
                         flagComesFromFinishFixing = true;
@@ -793,8 +802,8 @@ public class Interaction : MonoBehaviour
                         saveShip.UpdateShipPartLostPlate();
                         toolAnimator.SetTrigger("FinishHammerHit");
                         toolAnimator.SetBool("FinishHammerHit2", true);
-                        hammerHit.Stop();
-                        flagHammerHit = false;
+                        //hammerHit.Stop();
+                        //flagHammerHit = false;
                         isHammerPressing = false;
                         OffFillFixFiller();
                         flagComesFromFinishFixing = true;
@@ -811,8 +820,8 @@ public class Interaction : MonoBehaviour
                         saveShip.UpdateShipPartLostPlate();
                         toolAnimator.SetTrigger("FinishHammerHit");
                         toolAnimator.SetBool("FinishHammerHit2", true);
-                        hammerHit.Stop();
-                        flagHammerHit = false;
+                        //hammerHit.Stop();
+                        //flagHammerHit = false;
                         hammerHit.Stop();
                         isHammerPressing = false;
                         OffFillFixFiller();
@@ -826,8 +835,8 @@ public class Interaction : MonoBehaviour
                     rayUpgradeDistance, maskUpgrade))
         {
             //toolAnimator.SetBool("FinishHammerHit2", true);
-            hammerHit.Stop();
-            flagHammerHit = false;
+            //hammerHit.Stop();
+            //flagHammerHit = false;
             wrench.SetActive(false);
             helpingText3.text = "";
         }
@@ -848,7 +857,7 @@ public class Interaction : MonoBehaviour
         {
             if (raycastHit.collider.CompareTag("Rescue"))
             {
-                helpingText.text = "Press [E] \n to rescue from this planet.";
+                helpingText4.text = "Press [E]\nTo Rescue";
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     Debug.Log("asdasd");
@@ -858,7 +867,7 @@ public class Interaction : MonoBehaviour
         else if (!Physics.Raycast(mainCamera.transform.position, mainCamera.transform.TransformDirection(Vector3.forward), out RaycastHit raycatHit,
             rayChairDistance, maskChair))
         {
-            helpingText.text = "";
+            helpingText4.text = "";
         }
     }
 

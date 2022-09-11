@@ -34,6 +34,22 @@ public class Oxygen : MonoBehaviour
         currentOxygen = 1;
         maxOxygen = 1;
         UpdateOxygenLevel();
+
+        if(mySaveMaterial.oxygenSystemLevel == 1)
+        {
+            oxygenbar.maxValue = oxygenSystemLevel1Value;
+            oxygenbar.value = oxygenSystemLevel1Value;
+        }
+        else if (mySaveMaterial.oxygenSystemLevel == 2)
+        {
+            oxygenbar.maxValue = oxygenSystemLevel2Value;
+            oxygenbar.value = oxygenSystemLevel2Value;
+        }
+        else if (mySaveMaterial.oxygenSystemLevel == 3)
+        {
+            oxygenbar.maxValue = oxygenSystemLevel3Value;
+            oxygenbar.value = oxygenSystemLevel3Value;
+        }
     }
 
     // Update is called once per frame

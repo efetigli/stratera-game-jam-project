@@ -3,6 +3,7 @@ using TMPro;
 
 public class saveMaterials : MonoBehaviour
 {
+    public bool firstApperance;
     public float metal;
     public float  oil;
     public float  plastic;
@@ -22,6 +23,7 @@ public class saveMaterials : MonoBehaviour
     }
     public void loadMaterialsData(){
         materialData data =  SaveSystem.LoadMaterials();
+        firstApperance = data.firstApperance;
         metal = data.metal;
         oil = data.oil;
         plastic = data.plastic;

@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Sound")]
-    [SerializeField] private AudioSource normalStepSound;
-    [SerializeField] private AudioSource fastStepSound;
+    [SerializeField] public AudioSource normalStepSound;
+    [SerializeField] public AudioSource fastStepSound;
 
     [Header("Input Reader")]
     [SerializeField] private InputReader inputReader;
@@ -33,6 +33,9 @@ public class PlayerController : MonoBehaviour
     public float movementSpeed;
     private Vector3 movement;
     private float xRotate = 0f;
+
+    [Header("Pause Mnaager")]
+    [SerializeField] private PauseManager pauseManager;
 
     [Header("Tools")]
     [SerializeField] private GameObject pickaxe;
@@ -89,15 +92,21 @@ public class PlayerController : MonoBehaviour
             if (movementSpeed == runSpeed)
             {
                 animator.SetFloat("IdleAndWalk", 1f, AnimatorDampTime, Time.deltaTime);
-                normalStepSound.enabled = false;
-                fastStepSound.enabled = true;
+                if(pauseManager.isPause == false)
+                {
+                    normalStepSound.enabled = false;
+                    fastStepSound.enabled = true;
+                }
 
             }
             else if (movementSpeed == walkSpeed)
             {
                 animator.SetFloat("IdleAndWalk", 0.5f, AnimatorDampTime, Time.deltaTime);
-                fastStepSound.enabled = false;
-                normalStepSound.enabled = true;
+                if (pauseManager.isPause == false)
+                {
+                    normalStepSound.enabled = true;
+                    fastStepSound.enabled = false;
+                }
             }
         }
 
