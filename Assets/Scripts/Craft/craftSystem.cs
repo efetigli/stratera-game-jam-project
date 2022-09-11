@@ -77,9 +77,49 @@ public class craftSystem : MonoBehaviour
         //oilCount.text = (oilSlider.value * oilPerPlastic).ToString("0");
         //plasticCount.text = oilSlider.value.ToString("0");
     }
+    public void CheckerForCraft()
+    {
+        if (mySaveMaterials.isPlate1Crafted)
+        {
+            plate1CraftButton.enabled = false;
+            Image1.enabled = true;
+        }
+        if (mySaveMaterials.isPlate2Crafted)
+        {
+            plate2CraftButton.enabled = false;
+            Image2.enabled = true;
+        }
+        if (mySaveMaterials.isMetalPickaxeCrafted)
+        {
+            mPUpgradeButton.enabled = false;
+            Image3.enabled = true;
+        }
+        if (mySaveMaterials.isGoldPickaxeCrafted)
+        {
+            gPUpgradeButton.enabled = false;
+            Image4.enabled = true;
+        }
+        if (mySaveMaterials.isOxygenLevel2Upgrade)
+        {
+            osPlastic1.enabled = false;
+            oSMetal1.enabled = false;
+            oSLevel2.enabled = false;
+            osPlastic2.enabled = true;
+            oSMetal2.enabled = true;
+            oSLevel3.enabled = true;
+        }
+        if (mySaveMaterials.isOxygenLevel3Upgrade)
+        {
+            oSUpgradeButton.enabled = false;
+            Image5.enabled = true;
+            Image6.enabled = true;
+        }
+    }
+
     public void craftPlate1(){
         if(plate1ReqMetal <= mySaveMaterials.metal){
             mySaveMaterials.metal = mySaveMaterials.metal - plate1ReqMetal;
+            mySaveMaterials.isPlate1Crafted = true;
             mySaveShip.isLostPlate1 = false;
             plate1CraftButton.enabled = false;
             Image1.enabled = true;
@@ -103,6 +143,7 @@ public class craftSystem : MonoBehaviour
     public void craftPlate2(){
         if(plate2ReqMetal <= mySaveMaterials.metal){
             mySaveMaterials.metal = mySaveMaterials.metal - plate2ReqMetal;
+            mySaveMaterials.isPlate1Crafted = true;
             mySaveShip.isLostPlate2 = false;
             plate2CraftButton.enabled = false;
             Image2.enabled = true;
@@ -152,6 +193,7 @@ public class craftSystem : MonoBehaviour
                 mySaveMaterials.pickaxeType = "Metal";
                 myPickAxe.AssignPickaxeHead();
             }
+            mySaveMaterials.isMetalPickaxeCrafted = true;
             mPUpgradeButton.enabled = false;
             Image3.enabled = true;
             if (isScreen)
@@ -172,9 +214,10 @@ public class craftSystem : MonoBehaviour
 
     public void upgradeGP(){
         if(gPReqGold <= mySaveMaterials.gold){
-            mySaveMaterials.metal = mySaveMaterials.metal - mPReqMetal;
+            mySaveMaterials.metal = mySaveMaterials.gold - gPReqGold;
             mySaveMaterials.pickaxeType = "Gold";
             myPickAxe.AssignPickaxeHead();
+            mySaveMaterials.isGoldPickaxeCrafted = true;
             gPUpgradeButton.enabled = false;
             Image4.enabled = true;
             if (isScreen)
@@ -200,6 +243,7 @@ public class craftSystem : MonoBehaviour
                 mySaveMaterials.plastic = mySaveMaterials.plastic - oS2ReqPlastic;
                 mySaveMaterials.oxygenSystemLevel = 2;
                 myOxygen.UpdateOxygenLevel();
+                mySaveMaterials.isOxygenLevel2Upgrade = true;
                 osPlastic1.enabled = false;
                 oSMetal1.enabled = false;
                 oSLevel2.enabled = false;
@@ -227,6 +271,7 @@ public class craftSystem : MonoBehaviour
                 mySaveMaterials.plastic = mySaveMaterials.plastic - oS3ReqPlastic;
                 mySaveMaterials.oxygenSystemLevel = 3;
                 myOxygen.UpdateOxygenLevel();
+                mySaveMaterials.isOxygenLevel3Upgrade = true;
                 oSUpgradeButton.enabled = false;
                 Image5.enabled = true;
                 Image6.enabled = true;

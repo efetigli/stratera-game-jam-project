@@ -13,14 +13,29 @@ public class Introduction : MonoBehaviour
     [SerializeField] private GameObject[] cards;
     private int cardIndex;
 
-    private void Awake()
+    [Header("Pickaxe")]
+    [SerializeField] private Pickaxe pickaxe;
+
+    [Header("CraftUI")]
+    [SerializeField] private craftSystem screenCraftSystem;
+    [SerializeField] private craftSystem canvasCraftSystem;
+
+    private void Update()
+    {
+        IntroductioncanvasActivation();
+    }
+
+    public void IntroductioncanvasActivation()
     {
         if (mySaveMaterials.firstApperance == false)
         {
             cursorManager.LockCursor();
+            pickaxe.AssignPickaxeHead();
             this.gameObject.SetActive(false);
+            screenCraftSystem.CheckerForCraft();
+            canvasCraftSystem.CheckerForCraft();
         }
-        else if(mySaveMaterials.firstApperance == true)
+        else if (mySaveMaterials.firstApperance == true)
         {
             introductionCanvas.SetActive(true);
             pauseManager.PauseGame();
@@ -58,5 +73,10 @@ public class Introduction : MonoBehaviour
             cardIndex = 0;
         }
         cards[cardIndex].SetActive(true);
+    }
+
+    public void PickaxeColorLoad()
+    {
+        pickaxe.AssignPickaxeHead();
     }
 }

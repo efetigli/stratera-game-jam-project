@@ -11,6 +11,12 @@ public class mainMenu : menuParent
         base.Start();
     }
     public void newGame(){
+        mySaveMaterials.isPlate1Crafted = false;
+        mySaveMaterials.isPlate2Crafted = false;
+        mySaveMaterials.isMetalPickaxeCrafted = false;
+        mySaveMaterials.isGoldPickaxeCrafted = false;
+        mySaveMaterials.isOxygenLevel2Upgrade = false;
+        mySaveMaterials.isOxygenLevel3Upgrade = false;
         mySaveMaterials.firstApperance = true;
         mySaveMaterials.metal = 0;
         mySaveMaterials.oil = 0;
