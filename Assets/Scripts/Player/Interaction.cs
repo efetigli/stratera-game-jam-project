@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Interaction : MonoBehaviour
 {
@@ -860,7 +861,7 @@ public class Interaction : MonoBehaviour
                 helpingText4.text = "Press [E]\nTo Rescue";
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    Debug.Log("asdasd");
+                    Invoke("LoadScene", 1f);
                 }
             }
         }
@@ -869,6 +870,11 @@ public class Interaction : MonoBehaviour
         {
             helpingText4.text = "";
         }
+    }
+
+    private void LoadScene()
+    {
+        SceneManager.LoadScene(2);
     }
 
 }
