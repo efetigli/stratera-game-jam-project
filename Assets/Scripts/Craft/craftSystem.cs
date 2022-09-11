@@ -81,11 +81,13 @@ public class craftSystem : MonoBehaviour
     {
         if (mySaveMaterials.isPlate1Crafted)
         {
+            mySaveShip.hasLostPlate1 = true;
             plate1CraftButton.enabled = false;
             Image1.enabled = true;
         }
         if (mySaveMaterials.isPlate2Crafted)
         {
+            mySaveShip.hasLostPlate2 = true;
             plate2CraftButton.enabled = false;
             Image2.enabled = true;
         }
@@ -119,6 +121,7 @@ public class craftSystem : MonoBehaviour
     public void craftPlate1(){
         if(plate1ReqMetal <= mySaveMaterials.metal){
             mySaveMaterials.metal = mySaveMaterials.metal - plate1ReqMetal;
+            mySaveShip.hasLostPlate1 = true;
             mySaveMaterials.isPlate1Crafted = true;
             mySaveShip.isLostPlate1 = false;
             plate1CraftButton.enabled = false;
@@ -144,6 +147,7 @@ public class craftSystem : MonoBehaviour
         if(plate2ReqMetal <= mySaveMaterials.metal){
             mySaveMaterials.metal = mySaveMaterials.metal - plate2ReqMetal;
             mySaveMaterials.isPlate1Crafted = true;
+            mySaveShip.hasLostPlate2 = true;
             mySaveShip.isLostPlate2 = false;
             plate2CraftButton.enabled = false;
             Image2.enabled = true;
