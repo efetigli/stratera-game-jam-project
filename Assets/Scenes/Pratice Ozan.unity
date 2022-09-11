@@ -31819,7 +31819,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 720470469}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 0.6062031, y: 0.28235817, z: 4.228573}
+  m_LocalPosition: {x: 0.60806227, y: -0.12654752, z: 4.231725}
   m_LocalScale: {x: 608.41797, y: 608.41785, z: 79.4336}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -43796,7 +43796,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 992891022}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 0.60814095, y: -0.62109447, z: 4.236847}
+  m_LocalPosition: {x: 0.61, y: -1.03, z: 4.24}
   m_LocalScale: {x: 534.5443, y: 534.5442, z: 942.14966}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -68477,6 +68477,7 @@ MonoBehaviour:
   metal: {fileID: 2100000, guid: e06acd56b2f44bf468c4c99b6f07907a, type: 2}
   gold: {fileID: 2100000, guid: 5c623a02c7cc425458febd7b17b9a7c8, type: 2}
   pickaxeHead: {fileID: 1497092151}
+  pickaxeTop: {fileID: 0}
   mySaveMaterials: {fileID: 1854046928}
 --- !u!23 &1567341096
 MeshRenderer:
@@ -76388,6 +76389,7 @@ MonoBehaviour:
   metal: {fileID: 2100000, guid: e06acd56b2f44bf468c4c99b6f07907a, type: 2}
   gold: {fileID: 2100000, guid: 5c623a02c7cc425458febd7b17b9a7c8, type: 2}
   pickaxeHead: {fileID: 9205457}
+  pickaxeTop: {fileID: 0}
   mySaveMaterials: {fileID: 0}
 --- !u!23 &1750311595
 MeshRenderer:
@@ -77926,6 +77928,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 596c12a700b6c0c43be6c870cb9f0e42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlate1Crafted: 0
+  isPlate2Crafted: 0
+  isMetalPickaxeCrafted: 0
+  isGoldPickaxeCrafted: 0
+  isOxygenLevel2Upgrade: 0
+  isOxygenLevel3Upgrade: 0
   firstApperance: 0
   metal: 0
   oil: 0
@@ -81202,6 +81210,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 596c12a700b6c0c43be6c870cb9f0e42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlate1Crafted: 0
+  isPlate2Crafted: 0
+  isMetalPickaxeCrafted: 0
+  isGoldPickaxeCrafted: 0
+  isOxygenLevel2Upgrade: 0
+  isOxygenLevel3Upgrade: 0
   firstApperance: 0
   metal: 90000
   oil: 90000

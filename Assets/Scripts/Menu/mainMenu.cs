@@ -7,9 +7,11 @@ public class mainMenu : menuParent
     [SerializeField] private saveMaterials mySaveMaterials;
     [SerializeField] private saveShip mySaveShip;
 
+
     public override void Start(){
         base.Start();
     }
+
     public void newGame(){
         mySaveMaterials.isPlate1Crafted = false;
         mySaveMaterials.isPlate2Crafted = false;
