@@ -1,16 +1,14 @@
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class mainMenu : MonoBehaviour
+public class mainMenu : menuParent
 {
     [Header("Saves")]
     [SerializeField] private saveMaterials mySaveMaterials;
     [SerializeField] private saveShip mySaveShip;
 
-    [SerializeField] Slider musicSlider;
-    void Start(){
-        musicSlider.value = FindObjectOfType<doNotDestroy>().GetComponent<AudioSource>().volume;
+    public override void Start(){
+        base.Start();
     }
     public void newGame(){
         mySaveMaterials.metal = 0;
