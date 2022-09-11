@@ -76,6 +76,9 @@ public class InputReader : MonoBehaviour
 
     private void OpenPauseMenu()
     {
+        if (this.GetComponent<Interaction>().isInteractWithScreen == true)
+            return;
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             this.GetComponent<Interaction>().flagEsc = true;

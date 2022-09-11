@@ -518,6 +518,13 @@ public class Interaction : MonoBehaviour
     {
         flagScreenOpen = false;
     }
+
+    public void SetIsInteractWithScreenFalse()
+    {
+        isInteractWithScreen = false;
+    }
+
+    [HideInInspector] public bool isInteractWithScreen;
     private void InteractionWithScreens()
     {
         if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.TransformDirection(Vector3.forward), out RaycastHit raycastHit,
@@ -529,6 +536,7 @@ public class Interaction : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.E))
                 {
+                    isInteractWithScreen = true;
                     upgradeScreenCanvas.SetActive(true);
                     cursorManager.UnlockCursor();
                     pauseManager.PauseGame();
@@ -542,6 +550,7 @@ public class Interaction : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.E))
                 {
+                    isInteractWithScreen = true;
                     statScreenCanvas.SetActive(true);
                     cursorManager.UnlockCursor();
                     pauseManager.PauseGame();
