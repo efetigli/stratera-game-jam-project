@@ -6,6 +6,9 @@ using TMPro;
 
 public class Interaction : MonoBehaviour
 {
+    [Header("Sounds")]
+    [SerializeField] private AudioSource pickaxeHit;
+
     [Header("Which Type of Interaction")]
     [SerializeField] private Image ShowingType;
     [SerializeField] private TextMeshProUGUI helpingText;
@@ -15,6 +18,7 @@ public class Interaction : MonoBehaviour
     [Header("Images")]
     [SerializeField] private GameObject hand;
     [SerializeField] private GameObject wrench;
+    [SerializeField] private GameObject pickaxeImage;
 
     [Header("Which Tool are using")]
     [SerializeField] private PlayerController playerController;
@@ -131,7 +135,7 @@ public class Interaction : MonoBehaviour
     [SerializeField] private GameObject feedbackOreUI;
     [HideInInspector] public bool isCollectNewOre;
     [HideInInspector] public string whichCollectNewOreType;
-    [HideInInspector] public float amountCollectNewOre;
+    [HideInInspector] public string amountCollectNewOre;
 
     private void PickObjects()
     {
@@ -150,7 +154,7 @@ public class Interaction : MonoBehaviour
                     {
                         feedbackOreUI.SetActive(false);
                         mySaveMaterials.metal += stonePickaxeOreValue;
-                        amountCollectNewOre = stonePickaxeOreValue;
+                        amountCollectNewOre = stonePickaxeOreValue.ToString();
                         isCollectNewOre = true;
                         feedbackOreUI.SetActive(true);
                         feedbackOreUI.GetComponent<FeedBackOrePlayerUI>().closeTimer = 0f;
@@ -159,7 +163,7 @@ public class Interaction : MonoBehaviour
                     {
                         feedbackOreUI.SetActive(false);
                         mySaveMaterials.metal += metalPickaxeOreValue;
-                        amountCollectNewOre = metalPickaxeOreValue;
+                        amountCollectNewOre = metalPickaxeOreValue.ToString();
                         isCollectNewOre = true;
                         feedbackOreUI.SetActive(true);
                         feedbackOreUI.GetComponent<FeedBackOrePlayerUI>().closeTimer = 0f;
@@ -168,7 +172,7 @@ public class Interaction : MonoBehaviour
                     {
                         feedbackOreUI.SetActive(false);
                         mySaveMaterials.metal += goldPickaxeOreValue;
-                        amountCollectNewOre = goldPickaxeOreValue;
+                        amountCollectNewOre = goldPickaxeOreValue.ToString();
                         isCollectNewOre = true;
                         feedbackOreUI.SetActive(true);
                         feedbackOreUI.GetComponent<FeedBackOrePlayerUI>().closeTimer = 0f;
@@ -189,7 +193,7 @@ public class Interaction : MonoBehaviour
                     {
                         feedbackOreUI.SetActive(false);
                         mySaveMaterials.gold += stonePickaxeOreValue;
-                        amountCollectNewOre = stonePickaxeOreValue;
+                        amountCollectNewOre = stonePickaxeOreValue.ToString();
                         isCollectNewOre = true;
                         feedbackOreUI.SetActive(true);
                         feedbackOreUI.GetComponent<FeedBackOrePlayerUI>().closeTimer = 0f;
@@ -198,7 +202,7 @@ public class Interaction : MonoBehaviour
                     {
                         feedbackOreUI.SetActive(false);
                         mySaveMaterials.gold += metalPickaxeOreValue;
-                        amountCollectNewOre = metalPickaxeOreValue;
+                        amountCollectNewOre = metalPickaxeOreValue.ToString();
                         isCollectNewOre = true;
                         feedbackOreUI.SetActive(true);
                         feedbackOreUI.GetComponent<FeedBackOrePlayerUI>().closeTimer = 0f;
@@ -207,7 +211,7 @@ public class Interaction : MonoBehaviour
                     {
                         feedbackOreUI.SetActive(false);
                         mySaveMaterials.gold += goldPickaxeOreValue;
-                        amountCollectNewOre = goldPickaxeOreValue;
+                        amountCollectNewOre = goldPickaxeOreValue.ToString();
                         isCollectNewOre = true;
                         feedbackOreUI.SetActive(true);
                         feedbackOreUI.GetComponent<FeedBackOrePlayerUI>().closeTimer = 0f;
@@ -223,36 +227,136 @@ public class Interaction : MonoBehaviour
                 helpingText.text = "Press [E] \n to collect";
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    #region Collect By Looking Pickaxe Type
-                    if (pickaxe.GetTypeOfPickaxe() == "Stone")
-                    {
-                        feedbackOreUI.SetActive(false);
-                        mySaveMaterials.oil += stonePickaxeOreValue;
-                        amountCollectNewOre = stonePickaxeOreValue;
-                        isCollectNewOre = true;
-                        feedbackOreUI.SetActive(true);
-                        feedbackOreUI.GetComponent<FeedBackOrePlayerUI>().closeTimer = 0f;
-                    }
-                    else if (pickaxe.GetTypeOfPickaxe() == "Metal")
-                    {
-                        feedbackOreUI.SetActive(false);
-                        mySaveMaterials.oil += metalPickaxeOreValue;
-                        amountCollectNewOre = metalPickaxeOreValue;
-                        isCollectNewOre = true;
-                        feedbackOreUI.SetActive(true);
-                        feedbackOreUI.GetComponent<FeedBackOrePlayerUI>().closeTimer = 0f;
-                    }
-                    else if (pickaxe.GetTypeOfPickaxe() == "Gold")
-                    {
-                        feedbackOreUI.SetActive(false);
-                        mySaveMaterials.oil += goldPickaxeOreValue;
-                        amountCollectNewOre = goldPickaxeOreValue;
-                        isCollectNewOre = true;
-                        feedbackOreUI.SetActive(true);
-                        feedbackOreUI.GetComponent<FeedBackOrePlayerUI>().closeTimer = 0f;
-                    }
-                    #endregion
+                    //#region Collect By Looking Pickaxe Type
+                    //if (pickaxe.GetTypeOfPickaxe() == "Stone")
+                    //{
+                    //    feedbackOreUI.SetActive(false);
+                    //    mySaveMaterials.oil += stonePickaxeOreValue;
+                    //    amountCollectNewOre = stonePickaxeOreValue;
+                    //    isCollectNewOre = true;
+                    //    feedbackOreUI.SetActive(true);
+                    //    feedbackOreUI.GetComponent<FeedBackOrePlayerUI>().closeTimer = 0f;
+                    //}
+                    //else if (pickaxe.GetTypeOfPickaxe() == "Metal")
+                    //{
+                    //    feedbackOreUI.SetActive(false);
+                    //    mySaveMaterials.oil += metalPickaxeOreValue;
+                    //    amountCollectNewOre = metalPickaxeOreValue;
+                    //    isCollectNewOre = true;
+                    //    feedbackOreUI.SetActive(true);
+                    //    feedbackOreUI.GetComponent<FeedBackOrePlayerUI>().closeTimer = 0f;
+                    //}
+                    //else if (pickaxe.GetTypeOfPickaxe() == "Gold")
+                    //{
+                    //    feedbackOreUI.SetActive(false);
+                    //    mySaveMaterials.oil += goldPickaxeOreValue;
+                    //    amountCollectNewOre = goldPickaxeOreValue;
+                    //    isCollectNewOre = true;
+                    //    feedbackOreUI.SetActive(true);
+                    //    feedbackOreUI.GetComponent<FeedBackOrePlayerUI>().closeTimer = 0f;
+                    //}
+                    //#endregion
+                    feedbackOreUI.SetActive(false);
+                    mySaveMaterials.oil += 200;
+                    amountCollectNewOre = 200.ToString();
+                    isCollectNewOre = true;
+                    feedbackOreUI.SetActive(true);
+                    feedbackOreUI.GetComponent<FeedBackOrePlayerUI>().closeTimer = 0f;
                     whichCollectNewOreType = "Oil";
+                    Destroy(raycastHit.collider.gameObject);
+                }
+            }
+            else if (raycastHit.collider.CompareTag("Wing2"))
+            {
+                hand.SetActive(true);
+                helpingText.text = "Press [E] \n to collect";
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    isCollectNewOre = true;
+                    feedbackOreUI.SetActive(true);
+                    feedbackOreUI.GetComponent<FeedBackOrePlayerUI>().closeTimer = 0f;
+                    whichCollectNewOreType = "";
+                    amountCollectNewOre = "Wing Lvl.2";
+                    saveShip.hasWingPieceLevel2 = true;
+                    Destroy(raycastHit.collider.gameObject);
+                }
+            }
+            else if (raycastHit.collider.CompareTag("Wing3"))
+            {
+                hand.SetActive(true);
+                helpingText.text = "Press [E] \n to collect";
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    feedbackOreUI.SetActive(true);
+                    amountCollectNewOre = "Wing Lvl.3";
+                    whichCollectNewOreType = "";
+                    isCollectNewOre = true;
+                    saveShip.hasWingPieceLevel3 = true;
+                    feedbackOreUI.GetComponent<FeedBackOrePlayerUI>().closeTimer = 0f;
+                    Destroy(raycastHit.collider.gameObject);
+                }
+            }
+            else if (raycastHit.collider.CompareTag("Engine2"))
+            {
+                hand.SetActive(true);
+                helpingText.text = "Press [E] \n to collect";
+                Debug.Log("asd");
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    feedbackOreUI.SetActive(true);
+                    amountCollectNewOre = "Engine Lvl.2";
+                    whichCollectNewOreType = "";
+                    isCollectNewOre = true;
+                    saveShip.hasEngineLevel2 = true;
+                    feedbackOreUI.GetComponent<FeedBackOrePlayerUI>().closeTimer = 0f;
+                    Destroy(raycastHit.collider.gameObject);
+                }
+            }
+            else if (raycastHit.collider.CompareTag("Engine3"))
+            {
+                hand.SetActive(true);
+                helpingText.text = "Press [E] \n to collect";
+                Debug.Log("asd");
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    feedbackOreUI.SetActive(true);
+                    amountCollectNewOre = "Engine Lvl.3";
+                    whichCollectNewOreType = "";
+                    isCollectNewOre = true;
+                    saveShip.hasEngineLevel3 = true;
+                    feedbackOreUI.GetComponent<FeedBackOrePlayerUI>().closeTimer = 0f;
+                    Destroy(raycastHit.collider.gameObject);
+                }
+            }
+            else if (raycastHit.collider.CompareTag("Booster2"))
+            {
+                hand.SetActive(true);
+                helpingText.text = "Press [E] \n to collect";
+                Debug.Log("asd");
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    feedbackOreUI.SetActive(true);
+                    amountCollectNewOre = "Booster Rocker Lvl.2";
+                    whichCollectNewOreType = "";
+                    isCollectNewOre = true;
+                    saveShip.hasBoosterRocketLevel2 = true;
+                    feedbackOreUI.GetComponent<FeedBackOrePlayerUI>().closeTimer = 0f;
+                    Destroy(raycastHit.collider.gameObject);
+                }
+            }
+            else if (raycastHit.collider.CompareTag("Booster3"))
+            {
+                hand.SetActive(true);
+                helpingText.text = "Press [E] \n to collect";
+                Debug.Log("asd");
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    feedbackOreUI.SetActive(true);
+                    amountCollectNewOre = "Booster Rocker Lvl.3";
+                    whichCollectNewOreType = "";
+                    isCollectNewOre = true;
+                    saveShip.hasBoosterRocketLevel3 = true;
+                    feedbackOreUI.GetComponent<FeedBackOrePlayerUI>().closeTimer = 0f;
                     Destroy(raycastHit.collider.gameObject);
                 }
             }
@@ -278,23 +382,37 @@ public class Interaction : MonoBehaviour
             if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.TransformDirection(Vector3.forward), out RaycastHit raycastHit,
                 rayPickaxeHitDistance, maskPickaxeUsing))
             {
+                pickaxeImage.SetActive(true);
                 helpingText.text = "Press [E] \n to collect";
                 if (raycastHit.collider.CompareTag("Resource"))
                 {
                     if (pickaxe.GetTypeOfPickaxe() == "Stone")
                     {
+                        pickaxeHit.Play();
                         raycastHit.collider.GetComponent<BreakableStone>().HitTheBreakableStone(stonePickaxeDamageValue);
                     }
                     else if (pickaxe.GetTypeOfPickaxe() == "Metal")
                     {
                         raycastHit.collider.GetComponent<BreakableStone>().HitTheBreakableStone(metalPickaxeDamageValue);
+                        pickaxeHit.Play();
                     }
                     else if (pickaxe.GetTypeOfPickaxe() == "Gold")
                     {
                         raycastHit.collider.GetComponent<BreakableStone>().HitTheBreakableStone(goldPickaxeDamageValue);
+                        pickaxeHit.Play();
                     }
                 }
             }
+        }
+        if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.TransformDirection(Vector3.forward), out RaycastHit raycstHit,
+                rayPickaxeHitDistance, maskPickaxeUsing))
+        {
+            pickaxeImage.SetActive(true);
+        }
+        else if (!Physics.Raycast(mainCamera.transform.position, mainCamera.transform.TransformDirection(Vector3.forward), out RaycastHit raystHit,
+                rayPickaxeHitDistance, maskPickaxeUsing))
+        {
+            pickaxeImage.SetActive(false);
         }
     }
 
@@ -439,12 +557,14 @@ public class Interaction : MonoBehaviour
         if (flagEsc== false && Input.GetMouseButtonDown(0))
         {
             toolAnimator.SetTrigger("HitWithHammer");
+            toolAnimator.SetBool("FinishHammerHit2", false);
             isHammerPressing = true;
         }
         else if (Input.GetMouseButtonUp(0))
         {
             if (!flagComesFromFinishFixing)
-                toolAnimator.SetTrigger("FinishHammerHit");
+                toolAnimator.SetBool("FinishHammerHit2", true);
+            //toolAnimator.SetTrigger("FinishHammerHit");
             isHammerPressing = false;
             OffFillFixFiller();
             flagComesFromFinishFixing = false;
@@ -585,7 +705,8 @@ public class Interaction : MonoBehaviour
                             saveShip.wingLevel = 3;
                             saveShip.UpdateWing();
                         }
-                        toolAnimator.SetTrigger("FinishHammerHit");
+                        //toolAnimator.SetTrigger("FinishHammerHit");
+                        toolAnimator.SetBool("FinishHammerHit2", true);
                         isHammerPressing = false;
                         OffFillFixFiller();
                         flagComesFromFinishFixing = true;
@@ -610,6 +731,7 @@ public class Interaction : MonoBehaviour
                             saveShip.UpdateBooster();
                         }
                         toolAnimator.SetTrigger("FinishHammerHit");
+                        toolAnimator.SetBool("FinishHammerHit2", true);
                         isHammerPressing = false;
                         OffFillFixFiller();
                         flagComesFromFinishFixing = true;
@@ -634,6 +756,7 @@ public class Interaction : MonoBehaviour
                             saveShip.UpdateEngine();
                         }
                         toolAnimator.SetTrigger("FinishHammerHit");
+                        toolAnimator.SetBool("FinishHammerHit2", true);
                         isHammerPressing = false;
                         OffFillFixFiller();
                         flagComesFromFinishFixing = true;
@@ -649,6 +772,7 @@ public class Interaction : MonoBehaviour
                         saveShip.isLostPlate1 = true;
                         saveShip.UpdateShipPartLostPlate();
                         toolAnimator.SetTrigger("FinishHammerHit");
+                        toolAnimator.SetBool("FinishHammerHit2", true);
                         isHammerPressing = false;
                         OffFillFixFiller();
                         flagComesFromFinishFixing = true;
@@ -664,6 +788,7 @@ public class Interaction : MonoBehaviour
                         saveShip.isLostPlate2 = true;
                         saveShip.UpdateShipPartLostPlate();
                         toolAnimator.SetTrigger("FinishHammerHit");
+                        toolAnimator.SetBool("FinishHammerHit2", true);
                         isHammerPressing = false;
                         OffFillFixFiller();
                         flagComesFromFinishFixing = true;
@@ -675,6 +800,7 @@ public class Interaction : MonoBehaviour
         else if (!Physics.Raycast(mainCamera.transform.position, mainCamera.transform.TransformDirection(Vector3.forward), out RaycastHit raycasHit,
                     rayUpgradeDistance, maskUpgrade))
         {
+            //toolAnimator.SetBool("FinishHammerHit2", true);
             wrench.SetActive(false);
             helpingText3.text = "";
         }

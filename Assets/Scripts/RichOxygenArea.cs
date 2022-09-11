@@ -6,6 +6,10 @@ public class RichOxygenArea : MonoBehaviour
 {
     public bool isInsideOxygenRichArea { get; private set; }
 
+    [Header("O2 Sounds")]
+    [SerializeField] private AudioSource inO2;
+    [SerializeField] private AudioSource outO2;
+
     [Header("Player Flaslight")]
     [SerializeField] private GameObject flashLight;
 
@@ -15,6 +19,8 @@ public class RichOxygenArea : MonoBehaviour
         {
             isInsideOxygenRichArea = true;
             flashLight.SetActive(false);
+            inO2.enabled = true;
+            outO2.enabled = false;
         }
     }
 
@@ -34,6 +40,8 @@ public class RichOxygenArea : MonoBehaviour
         {
             isInsideOxygenRichArea = false;
             flashLight.SetActive(true);
+            outO2.enabled = true;
+            inO2.enabled = false;
         }
     }
 }

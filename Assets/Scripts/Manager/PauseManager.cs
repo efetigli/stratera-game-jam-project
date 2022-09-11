@@ -12,7 +12,6 @@ public class PauseManager : MonoBehaviour
 
     public void UnpauseGame()
     {
-        interaction.toolAnimator.ResetTrigger("FinishHammerHit");
         interaction.flagEsc = false;
         Time.timeScale = 1;
     }

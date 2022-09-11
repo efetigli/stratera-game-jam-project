@@ -20,6 +20,12 @@ TagManager:
   - Crash2
   - Rescue
   - StatScreen
+  - Wing2
+  - Wing3
+  - Engine2
+  - Engine3
+  - Booster2
+  - Booster3
   layers:
   - Default
   - TransparentFX
@@ -34,7 +40,7 @@ TagManager:
   - CorruptedShipPart
   - Ship
   - Upgrade
-  - 
+  - Stone
   - 
   - 
   - 

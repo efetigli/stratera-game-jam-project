@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Sound")]
+    [SerializeField] private AudioSource normalStepSound;
+    [SerializeField] private AudioSource fastStepSound;
+
     [Header("Input Reader")]
     [SerializeField] private InputReader inputReader;
 
@@ -75,13 +79,26 @@ public class PlayerController : MonoBehaviour
             movementSpeed = runSpeed;
 
         if (movement == Vector3.zero)
+        {
             animator.SetFloat("IdleAndWalk", 0f, AnimatorDampTime, Time.deltaTime);
+            normalStepSound.enabled = false;
+            fastStepSound.enabled = false;
+        }
         else if (movement != Vector3.zero)
         {
-            if(movementSpeed == runSpeed)
+            if (movementSpeed == runSpeed)
+            {
                 animator.SetFloat("IdleAndWalk", 1f, AnimatorDampTime, Time.deltaTime);
+                normalStepSound.enabled = false;
+                fastStepSound.enabled = true;
+
+            }
             else if (movementSpeed == walkSpeed)
+            {
                 animator.SetFloat("IdleAndWalk", 0.5f, AnimatorDampTime, Time.deltaTime);
+                fastStepSound.enabled = false;
+                normalStepSound.enabled = true;
+            }
         }
 
 
