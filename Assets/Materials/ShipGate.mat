@@ -131,7 +131,7 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _DotsColor: {r: 0, g: 0.014204818, b: 0.20754719, a: 1}
+    - _DotsColor: {r: 0.030437868, g: 0.053772476, b: 0.33962262, a: 1}
     - _Dotsiling: {r: 20, g: 11, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _NoiseSpeed: {r: 0, g: 0.1, b: 0, a: 0}
