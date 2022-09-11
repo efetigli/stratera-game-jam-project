@@ -9609,7 +9609,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 100
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -10294,6 +10294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickaxeHit: {fileID: 466425926}
+  hammerHit: {fileID: 2001620656}
   ShowingType: {fileID: 0}
   helpingText: {fileID: 2067510470}
   helpingText2: {fileID: 2033970465}
@@ -10363,6 +10364,7 @@ MonoBehaviour:
   cursorManager: {fileID: 628003685}
   flagScreenOpen: 0
   flagEsc: 0
+  flagHammerHit: 0
   maskChair:
     serializedVersion: 2
     m_Bits: 512
@@ -40681,15 +40683,15 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 27a86ea5ed9db4140a83b0b6c36c3df0, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 101
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
