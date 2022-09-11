@@ -26,6 +26,8 @@ TagManager:
   - Engine3
   - Booster2
   - Booster3
+  - Lava
+  - ClickSound
   layers:
   - Default
   - TransparentFX

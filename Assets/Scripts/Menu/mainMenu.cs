@@ -7,11 +7,9 @@ public class mainMenu : menuParent
     [SerializeField] private saveMaterials mySaveMaterials;
     [SerializeField] private saveShip mySaveShip;
 
-
     public override void Start(){
         base.Start();
     }
-
     public void newGame(){
         mySaveMaterials.isPlate1Crafted = false;
         mySaveMaterials.isPlate2Crafted = false;
@@ -44,11 +42,14 @@ public class mainMenu : menuParent
         mySaveShip.engineLevel = 1;
         mySaveShip.boosterRocketLevel = 1;
         mySaveShip.saveShipData();
+        Invoke("WaitScene",0.2f);
+    }
+    private void WaitScene(){
         SceneManager.LoadScene(1);
     }
     public void Continue(){
         mySaveMaterials.loadMaterialsData();
         mySaveShip.loadShipData();
-        SceneManager.LoadScene(1);
+        Invoke("WaitScene",0.2f);
     }
 }
