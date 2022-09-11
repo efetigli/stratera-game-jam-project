@@ -15,7 +15,7 @@ public class pauseMenu : menuParent
         SceneManager.LoadScene(0);
     }
     public void WaitSfx(){
-        if (i<1){
+        if (i<1){   
             i++;
             Invoke("WaitSfx",0.2f);
         }
