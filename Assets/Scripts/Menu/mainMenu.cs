@@ -8,6 +8,8 @@ public class mainMenu : menuParent
     [SerializeField] private saveShip mySaveShip;
 
     public override void Start(){
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         base.Start();
     }
     public void newGame(){
